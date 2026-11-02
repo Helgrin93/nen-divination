@@ -4,15 +4,14 @@ test('room art shares the original camera and never paints over its centre',asyn
   await page.goto('/');
   await expect(page.locator('.wing-sprite[data-ready=true]')).toHaveCount(4);
   await expect(page.locator('.water-effects')).toHaveAttribute('data-ready','true');
-  await expect.poll(()=>page.locator('.room-wing').evaluateAll(images=>images.every(i=>i.complete&&i.naturalWidth===512))).toBe(true);
+  await expect.poll(()=>page.locator('.room-panorama').evaluate(i=>i.complete&&i.naturalWidth===2560)).toBe(true);
   const camera=await page.locator('.unified-stage').boundingBox();
-  const left=await page.locator('.room-wing-left').boundingBox(),right=await page.locator('.room-wing-right').boundingBox();
-  expect(left.x+left.width).toBeCloseTo(camera.x,1);
-  expect(right.x).toBeCloseTo(camera.x+camera.width,1);
-  expect(left.height).toBeCloseTo(camera.height,1);
-  expect(right.height).toBeCloseTo(camera.height,1);
+  const panorama=await page.locator('.room-panorama').boundingBox();
+  expect(panorama.x+camera.width/3).toBeCloseTo(camera.x,1);
+  expect(panorama.width).toBeCloseTo(camera.width*5/3,1);
+  expect(panorama.height).toBeCloseTo(camera.height,1);
   const viewport=page.viewportSize();
-  if(camera.x>0){expect(left.x).toBeLessThanOrEqual(0);expect(right.x+right.width).toBeGreaterThanOrEqual(viewport.width);}
+  if(camera.x>0){expect(panorama.x).toBeLessThanOrEqual(0);expect(panorama.x+panorama.width).toBeGreaterThanOrEqual(viewport.width);}
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(viewport.width);
   const clip={x:Math.max(0,Math.ceil(camera.x))+1,y:Math.ceil(camera.y)+1,
     width:Math.min(viewport.width,Math.floor(camera.x+camera.width))-Math.max(0,Math.ceil(camera.x))-2,
@@ -27,9 +26,9 @@ test('room art shares the original camera and never paints over its centre',asyn
     },pose);
     await expect(page.locator('.scene')).toHaveAttribute('data-pose',pose);
     await expect(page.locator('.water-effects')).toHaveAttribute('data-glass-pose',pose);
-    await page.locator('.room-wing').evaluateAll(images=>images.forEach(i=>i.style.visibility='visible'));
+    await page.locator('.room-panorama').evaluate(i=>i.style.visibility='visible');
     const withWings=await page.screenshot({clip,animations:'disabled'});
-    await page.locator('.room-wing').evaluateAll(images=>images.forEach(i=>i.style.visibility='hidden'));
+    await page.locator('.room-panorama').evaluate(i=>i.style.visibility='hidden');
     const original=await page.screenshot({clip,animations:'disabled'});
     const maxDelta=await page.evaluate(async({before,after})=>{
       async function pixels(url){const image=new Image();image.src=url;await image.decode();const c=Object.assign(document.createElement('canvas'),{width:image.width,height:image.height});const ctx=c.getContext('2d');ctx.drawImage(image,0,0);return ctx.getImageData(0,0,c.width,c.height).data;}
@@ -49,11 +48,11 @@ test('side art covers a wide short desktop and an ultrawide without moving the c
     await page.setViewportSize(viewport);await page.goto('/');
     const boxes=await page.evaluate(()=>{
       const box=s=>{const {left,right,width,height}=document.querySelector(s).getBoundingClientRect();return{left,right,width,height};};
-      return {camera:box('.unified-stage'),left:box('.room-wing-left'),right:box('.room-wing-right'),overflow:document.documentElement.scrollWidth};
+      return {camera:box('.unified-stage'),panorama:box('.room-panorama'),overflow:document.documentElement.scrollWidth};
     });
     expect(boxes.camera.width).toBeCloseTo((viewport.height-64)*1.5,1);
-    expect(boxes.left.left).toBeLessThanOrEqual(0);
-    expect(boxes.right.right).toBeGreaterThanOrEqual(viewport.width);
+    expect(boxes.panorama.left).toBeLessThanOrEqual(0);
+    expect(boxes.panorama.right).toBeGreaterThanOrEqual(viewport.width);
     expect(boxes.overflow).toBe(viewport.width);
   }
 });

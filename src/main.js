@@ -16,6 +16,7 @@ import { icon } from './components/icons.js';
 import { shareResult,copyQuizLink } from './game/share.js';
 import { createWingReactions } from './game/wingReactions.js';
 import { setupCharacterCards } from './components/CharacterCards.js';
+import { siteBrand } from './components/SiteBrand.js';
 
 let storage;
 try { storage=window.localStorage; } catch { /* The app works without storage. */ }
@@ -26,7 +27,7 @@ let dialogue=null, dialogueTimer=null, dialogueDeadline=0;
 const shownReactions=new Set();
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelector('#app').innerHTML=`
-  <header class="site-header"><div class="brand">Nen Divination</div>
+  <header class="site-header">${siteBrand()}
   <nav class="language-switch" aria-label="Language"><button data-lang="it" aria-label="Italiano">IT</button><span aria-hidden="true">/</span><button data-lang="en" aria-label="English">EN</button></nav></header>
   <main id="experience"><section class="scene" data-phase="intro" data-effect="none">${quizScene()}<div class="scene-hold-slot"></div><p class="scene-effect-caption" aria-live="polite"></p></section><div id="content" class="content"></div></main>
   <footer class="site-footer"><span class="footer-mark">NEN DIVINATION <span aria-hidden="true">·</span> HUNTER × HUNTER</span><p data-i18n="fan"></p><p data-i18n="privacy"></p></footer>
@@ -53,7 +54,7 @@ scene.addEventListener('divinationerror',()=>{
 const t=()=>translations[lang];
 function translate(){
   document.documentElement.lang=lang;
-  document.title='Nen Divination';
+  document.title='HxH - Nen Divination Test';
   scene.setAttribute('aria-label',t().sceneLabel);
   document.querySelector('.language-switch').setAttribute('aria-label',lang==='it'?'Lingua':'Language');
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t()[el.dataset.i18n]);

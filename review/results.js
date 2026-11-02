@@ -14,6 +14,7 @@ import {shareResult,copyQuizLink} from '../src/game/share.js';
 import {nenTypes} from '../src/data/nenTypes.js';
 import {translations} from '../src/data/translations.js';
 import {setupCharacterCards} from '../src/components/CharacterCards.js';
+import {siteBrand} from '../src/components/SiteBrand.js';
 if(!import.meta.env.DEV)throw new Error('Result preview is development-only.');
 
 function sample(type){
@@ -25,7 +26,7 @@ function sample(type){
 }
 const samples=Object.fromEntries(Object.keys(nenTypes).map(type=>[type,sample(type)]));
 document.body.dataset.phase='result';
-document.querySelector('#app').innerHTML=`<header class="site-header"><span class="brand">Nen Divination</span><nav class="language-switch" aria-label="Lingua"><button data-lang="it">IT</button><span>/</span><button data-lang="en">EN</button></nav></header><main id="experience"><section class="scene" data-phase="result">${quizScene()}<p class="scene-effect-caption"></p></section><div id="content" class="content"></div></main><aside class="result-review-controls"><label>Anteprima <select data-result-type>${Object.entries(nenTypes).map(([id,t])=>`<option value="${id}">${t.it}</option>`).join('')}</select></label><a href="/">Apri il quiz</a></aside><div class="toast" role="status"></div>`;
+document.querySelector('#app').innerHTML=`<header class="site-header">${siteBrand()}<nav class="language-switch" aria-label="Lingua"><button data-lang="it">IT</button><span>/</span><button data-lang="en">EN</button></nav></header><main id="experience"><section class="scene" data-phase="result">${quizScene()}<p class="scene-effect-caption"></p></section><div id="content" class="content"></div></main><aside class="result-review-controls"><label>Anteprima <select data-result-type>${Object.entries(nenTypes).map(([id,t])=>`<option value="${id}">${t.it}</option>`).join('')}</select></label><a href="/">Apri il quiz</a></aside><div class="toast" role="status"></div>`;
 const scene=document.querySelector('.scene'),water=mountWaterScene(scene),hands=mountHandsMotion(scene),expression=setupQuizScene(scene);
 const requested=new URLSearchParams(location.search).get('type');
 let type=Object.hasOwn(nenTypes,requested)?requested:'conjuration',lang='it',busy=false;

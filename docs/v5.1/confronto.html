@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nen Divination V5.1 — confronto</title>
+<style>
+body{margin:0;background:#12191c;color:#eee;font:15px/1.5 system-ui}main{max-width:1500px;margin:auto;padding:24px}h1{font:30px Georgia,serif}nav{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:20px 0}select,a{font:inherit;color:inherit;background:#243036;padding:8px;border:1px solid #607078;border-radius:4px}label{display:flex;gap:8px;align-items:center}.frame{position:relative;width:100%;overflow:hidden;background:#000;line-height:0}.frame img{display:block;width:100%;height:auto}.frame .before{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}.divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;pointer-events:none}input{width:min(500px,55vw)}.legend{display:flex;justify-content:space-between;font-weight:600;margin:8px 0}.note{color:#bac5cb}a{display:inline-block;text-decoration:none}.status{min-height:24px}
+</style>
+<main><h1>Nen Divination V5.1 — prima / dopo</h1><p>Screenshot reali dell'app, con le stesse domande e gli stessi valori del radar. Trascina il cursore per confrontare il raccordo della stanza, le maniche e il bicchiere.</p>
+<nav><label>Schermo <select id="screen"><option>1920x1080</option><option>1440x900</option><option>390x844</option><option>375x667</option></select></label><label>Scena <select id="state"><option value="intro">Introduzione</option><option value="quiz">Domande</option><option value="comment">Commento di Wing</option><option value="transition">Transizione alla divinazione</option><option value="concentration">Concentrazione</option><option value="revelation">Rivelazione</option><option value="conclusion">Conclusione</option><option value="pose-neutral">Wing neutro</option><option value="pose-smile">Wing sorriso</option><option value="pose-eyesClosed">Wing occhi chiusi</option><option value="pose-gesture">Wing dito alzato</option><option value="result-it">Risultato IT</option><option value="result-en">Risultato EN</option></select></label><a id="before-link" target="_blank">Apri prima</a><a id="after-link" target="_blank">Apri dopo</a></nav>
+<label>Confronto <input id="split" type="range" min="0" max="100" value="50" aria-label="Percentuale visibile dello screenshot precedente"></label><div class="legend"><span>PRIMA</span><span>DOPO</span></div><p class="status" role="status"></p>
+<div class="frame"><img id="after" alt="Schermata dopo le correzioni"><img id="before" class="before" alt="Schermata prima delle correzioni"><span class="divider"></span></div>
+<p class="note">Mobile: viewport e tocco emulati in WebKit. Desktop: Chrome. Non è una prova su dispositivi fisici. La rivelazione contiene movimento: i due fotogrammi del flusso non sono sincronizzati al millisecondo; gli effetti sono verificati separatamente con i test di avanzamento e riproduzione.</p></main>
+<script type="module">
+const $=s=>document.querySelector(s);
+async function update(){
+ const file=`${$('#screen').value}-${$('#state').value}.png`;
+ for(const phase of ['before','after']){$(`#${phase}`).src=`${phase}/${file}`;$(`#${phase}-link`).href=`${phase}/${file}`;}
+ $('.status').textContent='Caricamento…';
+ try{await Promise.all([$('#before').decode(),$('#after').decode()]);$('.status').textContent='';}catch{$('.status').textContent='Screenshot non disponibile: eseguire scripts/review-v51.mjs prima e dopo le modifiche.';}
+}
+$('#screen').onchange=update;$('#state').onchange=update;
+$('#split').oninput=()=>{$('#before').style.clipPath=`inset(0 ${100-$('#split').value}% 0 0)`;$('.divider').style.left=`${$('#split').value}%`;};
+update();
+</script></html>

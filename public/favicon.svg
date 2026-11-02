@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#080e15"/><path d="M32 8 53 20v24L32 56 11 44V20Z" fill="none" stroke="#c8b998" stroke-width="2"/><path d="M20 42c1-15 12-23 25-23-2 16-9 25-25 23Zm0 0 18-17" fill="none" stroke="#6ad7c7" stroke-width="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="-10 -95 495 495">
+  <title>Simbolo Hunter</title>
+  <g fill="#050607">
+    <path d="M0 9h121v9H8zM175 9h125v9H175zM354 9h121l-8 9H354z"/>
+    <path d="M8 290h113v9H0zM175 290h125v9H175zM354 290h113l8 9H354z"/>
+    <path d="M56 18h9l153 272h-9zM410 18h9L266 290h-9z"/>
+    <path d="M208 18h59L96 290H38zM208 18h59l171 272h-59z"/>
+  </g>
+  <path fill="#bf1b38" d="M237.5 20 322 175 260 290h-45l-62-115z"/>
+</svg>

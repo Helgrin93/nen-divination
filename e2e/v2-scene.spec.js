@@ -13,7 +13,7 @@ test('V2 keeps the scene, selection and scroll stable with four accessible answe
   });
   await page.goto('/');
   await expect(page.locator('.journey')).toHaveCount(0);
-  await expect(page.locator('.site-header')).toHaveText(/Nen Divination\s*IT\s*\/\s*EN/);
+  await expect(page.locator('.site-header')).toHaveText(/Nen Divination Test\s*IT\s*\/\s*EN/);
   const plate=page.locator('.wing-plate');
   const imageBox=await plate.boundingBox();
   await expect(page.locator('.room-backdrop')).toHaveAttribute('src',/unified-goblet-scene\.png$/);

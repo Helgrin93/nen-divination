@@ -1,0 +1,434 @@
+{
+  "protectedFiles": [
+    {
+      "path": "public/apple-touch-icon.png",
+      "sha256": "a53d22af27e071cc804149f07c6508368eef5572dafc0a8339dca77792416b8c"
+    },
+    {
+      "path": "public/assets/brand/hunter-logo.png",
+      "sha256": "e1f29be8f3d43b5bd4f4d6352d4affa91068377084b488a37c8e05576aad4e98"
+    },
+    {
+      "path": "public/assets/characters/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "public/assets/characters/biscuit.jpg",
+      "sha256": "94a863c7cd497ed0d47534185ad5e6fa262b670b89621c632c742714bcdad31e"
+    },
+    {
+      "path": "public/assets/characters/chrollo.jpg",
+      "sha256": "8ab07664db87a242dac3499d6f6b12513d75aa538f899096dc12b77ea3a44773"
+    },
+    {
+      "path": "public/assets/characters/gon.jpg",
+      "sha256": "c9723505a4723b0494355410529e5bc78b050bf6dec62ead8f979233c53cec40"
+    },
+    {
+      "path": "public/assets/characters/hisoka.jpg",
+      "sha256": "d7f7607d8f9f9f64444c5fb2080bdc9cc7330b0fa1da789039969bae01e5c5a0"
+    },
+    {
+      "path": "public/assets/characters/illumi.jpg",
+      "sha256": "4ad2d0b74da873889286a6ba32c3a30eea5590eeb9bc031d00c7fa806eb1b38e"
+    },
+    {
+      "path": "public/assets/characters/killua.jpg",
+      "sha256": "8d0dd4473e58d7e61784b6ca1cf187d3d2b85a2157534e0f1cbdbee88105e7ec"
+    },
+    {
+      "path": "public/assets/characters/kite.jpg",
+      "sha256": "388860c4e57345b3e8248a36193fc4c3392eb19ef98d19b9e059a1bec990f239"
+    },
+    {
+      "path": "public/assets/characters/kurapika.jpg",
+      "sha256": "5f658fa0edf065d80da9ed4d836d2746a3ebe7e36c0c32494f99357c46adbacb"
+    },
+    {
+      "path": "public/assets/characters/meruem.jpg",
+      "sha256": "f544ea73bf301845cfccb7922b937e13090d7ad47acee20e41e52c011bf3612a"
+    },
+    {
+      "path": "public/assets/characters/morel.jpg",
+      "sha256": "6522880e3829b4bcdd43075ac4d53d5794d4083afcf696e647851057573d3b84"
+    },
+    {
+      "path": "public/assets/characters/neferpitou.jpg",
+      "sha256": "52cc1cb2df29ae09d092749536cd216d61556e521a960860f262165bd451d4ab"
+    },
+    {
+      "path": "public/assets/characters/netero.jpg",
+      "sha256": "433a954ad4faefd015999f2f02c97d5021e62f4b30d077be94dbdc265efe8341"
+    },
+    {
+      "path": "public/assets/characters/pakunoda.jpg",
+      "sha256": "ac9618b04afb0d66727567848dd6350c5f9bbcd83b7938c9bf14cbc2941d4f7b"
+    },
+    {
+      "path": "public/assets/characters/razor.jpg",
+      "sha256": "b383ad55b8eb6f975e6384529d7c719fb1a05b1b41735e531b56d70caabd3417"
+    },
+    {
+      "path": "public/assets/characters/shalnark.jpg",
+      "sha256": "b6b5cfcec7e1c07d928ef1d68e0aad725b56b23871c94a005a22fade18de2cdc"
+    },
+    {
+      "path": "public/assets/characters/shizuku.jpg",
+      "sha256": "34d4a5a9bb0709872182f7f16648d0e3a5ba95b2290bae5732339b39cb1af808"
+    },
+    {
+      "path": "public/assets/characters/uvogin.jpg",
+      "sha256": "f8c18861a97b62b4262e9c2fa3e57dea85c5640ffe73350d791c0add74d7870f"
+    },
+    {
+      "path": "public/assets/characters/zeno.jpg",
+      "sha256": "899e007ce4eb31b76a7ed0dd7e760a009d3411f4082df697c91e9c982b25af51"
+    },
+    {
+      "path": "public/assets/divination/art-v3-manifest.json",
+      "sha256": "426a8a7b3826033afc26ba1061697c1c0aaceecfc55d958b0a421de0a0e9d287"
+    },
+    {
+      "path": "public/assets/divination/diffusion-mattes-v3.png",
+      "sha256": "39271051674a37c493fb49427ba1f69d0961fb4ba72fb2a8530878691d7269b3"
+    },
+    {
+      "path": "public/assets/divination/hands-poses.png",
+      "sha256": "f0bdf7c6061c0ea8f9c86007eac97c01626896bd8d564cd0de3448842becc68f"
+    },
+    {
+      "path": "public/assets/divination/leaf-flex-atlas-v3.png",
+      "sha256": "8e6713ad829fa3dccb0056e504a8dbfb52848c8c06c6db6ddd1d98febdc950ea"
+    },
+    {
+      "path": "public/assets/divination/leaf-states-atlas.png",
+      "sha256": "fed996f69fdbe2918084c2e98283b7c3bc6de38c672f54ace9963b519fc2945f"
+    },
+    {
+      "path": "public/assets/divination/overflow-atlas.png",
+      "sha256": "44d4854a0d6bcc1fc38272e437ad549f36650fec564c30fed2d5e733af0d7838"
+    },
+    {
+      "path": "public/assets/divination/overflow-ink-atlas-v3.png",
+      "sha256": "cf7ee0fef4f18220495390e8c6f66d680f6283ca711db28e8ad4a3a90181efdf"
+    },
+    {
+      "path": "public/assets/divination/rug-border-repair.png",
+      "sha256": "0eaa4a53e7c8a01dddcd8401feea135baaa70fd00462f337396e13a2f95eea07"
+    },
+    {
+      "path": "public/assets/divination/sediment-atlas-v3.png",
+      "sha256": "76e75dbbf7714a8fe26b576705b34b99bca4af2f0181c49d6d65c24b8e95682f"
+    },
+    {
+      "path": "public/assets/divination/table-clean.png",
+      "sha256": "eda32d7612dc8ea6bfaf877e08a5cc0512c4c2ee4de52a30ea9f4ae22aafc24a"
+    },
+    {
+      "path": "public/assets/divination/water-clean.png",
+      "sha256": "e1b3cb45c17c57e633ae918948683862b0c8c8b2790d9e70647977370feccd7d"
+    },
+    {
+      "path": "public/assets/divination/water-surface-clean.png",
+      "sha256": "5390faadb481d06a61f14d4b31e1d35f83258ce5cebc4f58ae00eb8adbc6ec6a"
+    },
+    {
+      "path": "public/assets/room-v5/room-left.png",
+      "sha256": "6903a3d5b2442da437ec387c9d02e6257254d9b836e4039d4c4f3fc8bcde1676"
+    },
+    {
+      "path": "public/assets/room-v5/room-panorama.png",
+      "sha256": "feaf1ec047ba02b086046d499062eab96a93c92ae8d9ad06e20ae10b0085058e"
+    },
+    {
+      "path": "public/assets/room-v5/room-right.png",
+      "sha256": "2629a5de744d6774d848e7889a0a621406bb983c8bc1b85b9ff4597c3a285745"
+    },
+    {
+      "path": "public/assets/scene-v3/background-source.png",
+      "sha256": "7f19b38ef21ce716d0ddc6a6bc1e6cc5747c702d632c2f602e60b3c08572e11b"
+    },
+    {
+      "path": "public/assets/scene-v3/composition-source.png",
+      "sha256": "29fd8a614839ba847cdada9563d2c9bdfb75ef77758bd3e96326cff40647d46a"
+    },
+    {
+      "path": "public/assets/scene-v3/unified-goblet-scene.png",
+      "sha256": "77beed31fd9634c0722c8ea16a256f29de703aff60d2daa60b0867f811581c61"
+    },
+    {
+      "path": "public/assets/scene-v3/wall-rug.png",
+      "sha256": "6b655d68681e94c7e14c61905c0099eb7d268be38c11be0028c20a865e89073e"
+    },
+    {
+      "path": "public/assets/scene-v3/wing-eyes-closed.png",
+      "sha256": "3874a4ee7aa71cb60ca75dbd09435213d05b5044728d8550d2a711afab2c7990"
+    },
+    {
+      "path": "public/assets/scene-v3/wing-gesture.png",
+      "sha256": "c1f1b799c25fa9a88ff2f281b1b373cd22caa63c62805764f46f1978c6757e01"
+    },
+    {
+      "path": "public/assets/scene-v3/wing-neutral.png",
+      "sha256": "624a56ed7f2fd63b0ef29b588b197b900d1558e6d9342d5c0beecd28df2c9c97"
+    },
+    {
+      "path": "public/assets/scene-v3/wing-smile.png",
+      "sha256": "5d76d0dbc19101aaf75c86fd9ceffc7f36aa301921c7e34047c01031e9679f0b"
+    },
+    {
+      "path": "public/assets/wing/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "public/favicon-32.png",
+      "sha256": "881bb16b09f7d072ff3195cf04949d4d5f0df13871d7d5c2fb325e940c2d6efb"
+    },
+    {
+      "path": "public/favicon.svg",
+      "sha256": "9f7e329add957ca768e6d3da8456cd30628f83d604d1b451c831aafde4025618"
+    },
+    {
+      "path": "public/icon-192.png",
+      "sha256": "ef5ddb66f5ce39aa080335d2cd7cd724ca0f18eaac911f323e3831feb39f2858"
+    },
+    {
+      "path": "src/components/CharacterCards.js",
+      "sha256": "f968a8b14f5872d91a832cf747bd93012f33b0ba2380c0acd83231993ad7777e"
+    },
+    {
+      "path": "src/components/divinationArtData.js",
+      "sha256": "a9c0a821364d61804e599a8d2bf57498af7cbb4759808432726986854196c70f"
+    },
+    {
+      "path": "src/components/divinationTimeline.js",
+      "sha256": "67ae883813ce1e572517d8e6499007f6085327fc3b6a69308d014a9269618bec"
+    },
+    {
+      "path": "src/components/HandsMotion.js",
+      "sha256": "15d384edde955fcba21d827eb1fdd101be1c8fc5fe39d8434af953c5249ff580"
+    },
+    {
+      "path": "src/components/HoldInteraction.js",
+      "sha256": "20f532595c9d682d3a40e98139e81ea820267c430c570f1a6f2c678e1918d299"
+    },
+    {
+      "path": "src/components/icons.js",
+      "sha256": "41ef636e7f6332c4d251b4a24bf5eb36ac666a52fd77c3bcccf37b648c76bed9"
+    },
+    {
+      "path": "src/components/NenRadar.js",
+      "sha256": "4fc383ebcabfed854853ca527af0e16076b16bac224ceaac869729ffc5fb7a74"
+    },
+    {
+      "path": "src/components/QuizScene.js",
+      "sha256": "f5430a575373a8f4034cbefacf8247b5cc041236f9771fad9ddacc9a51a9a645"
+    },
+    {
+      "path": "src/components/ResultView.js",
+      "sha256": "08c2c64456ca57ef12a13ae97f7b39443124e0849b91240e3122ab984e7a8614"
+    },
+    {
+      "path": "src/components/sceneGeometry.js",
+      "sha256": "43b40ec5f1a966445f88c0899fbc7f5fc681be83629e89885ef57e47e2084106"
+    },
+    {
+      "path": "src/components/SiteBrand.js",
+      "sha256": "43b07a10dc1c1d8bab64ebba01d820a24978799037ad8983ffe826c9d6238869"
+    },
+    {
+      "path": "src/components/WaterArtPass.js",
+      "sha256": "b90b4b0f86921c909201d2fa7c92c366e9c74f668b86e45145c6f549cd016404"
+    },
+    {
+      "path": "src/components/WaterScene.js",
+      "sha256": "c7596eb4530a3f7b3bd0e53f4421fbf01c683cc5302c4e23cccbde0fcf55b4d0"
+    },
+    {
+      "path": "src/components/WingScene.js",
+      "sha256": "e54eab69af598801192969fef5484f92f899a1053764be0f5210466108ae1e8b"
+    },
+    {
+      "path": "src/data/characterImages.json",
+      "sha256": "6b9fd575c54d1ba21e3d9e6652c7e50bdc0f1360bc126c903a132da2983b7e5f"
+    },
+    {
+      "path": "src/data/characters.js",
+      "sha256": "45ba2899f50ac4370f3b9c79011fbbce7cbfd249f0ca572e15857c1aa2c8e09b"
+    },
+    {
+      "path": "src/data/nenSymbols.json",
+      "sha256": "17d9792adc0c47414563a8678b46c1f550a53e70a85654c7bb1ba144a56fdd0f"
+    },
+    {
+      "path": "src/data/nenTypes.js",
+      "sha256": "0dc64e48431fe6e9c214e74a68a90a8ff345ceff5ba061bda2dd068fcb9c71de"
+    },
+    {
+      "path": "src/data/questions.js",
+      "sha256": "3b257450caf9fbc6963dcc8816734259ea7514c91a906aec32ad589d306b5a2a"
+    },
+    {
+      "path": "src/data/resultPresentation.js",
+      "sha256": "9411ff6b4f1c4b88de450506cc7bf0fbfefb903cb77abdac2b7b8bda253e0c1c"
+    },
+    {
+      "path": "src/data/translations.js",
+      "sha256": "9e430315876027b373d059366b2a729859b8b2624a8be1e4fb84ae4fd1e01b3a"
+    },
+    {
+      "path": "src/data/wing.js",
+      "sha256": "5d7b6fea029b2b5196b7143364338ca74d41e100fcce8903cc24d96cb96a0e23"
+    },
+    {
+      "path": "src/game/bonusPicker.js",
+      "sha256": "a528a3338a35836edf70effed993fd38acfb665ef957951b974e4fadd2c82af1"
+    },
+    {
+      "path": "src/game/questionPicker.js",
+      "sha256": "dfc373d9bae0514ce73512507d4a16c03c573e744dce44a5547071331fe7d1fa"
+    },
+    {
+      "path": "src/game/scoring.js",
+      "sha256": "6ec672512f9c9c5e38dd14728197f98996f22c65280c822ab95dd69758585db6"
+    },
+    {
+      "path": "src/game/share.js",
+      "sha256": "29254926dba19f6028fc0fc44bc24b535ae03e509a16add68ef2c17fd9871427"
+    },
+    {
+      "path": "src/game/stateMachine.js",
+      "sha256": "1c494f6759744f1824d1dff2d9c69945dab2ceb732e28a5d01e559d04574652b"
+    },
+    {
+      "path": "src/game/wingReactions.js",
+      "sha256": "c555d042bc523a3e92f8fd69c356143220c3ccabdb604f6fd7c42ddfd051a37a"
+    },
+    {
+      "path": "src/services/tenrai.js",
+      "sha256": "eb8249e2261d9401d2384a8621179c1faea3a27be28223868832be4d600df91d"
+    },
+    {
+      "path": "src/styles/divination.css",
+      "sha256": "3b82b9ff5b671b0c6e35ea4b9cac413b03dd10dc5896efdd8499c21520c7a42f"
+    },
+    {
+      "path": "src/styles/quiz-scene.css",
+      "sha256": "4c7d128487ae84debff69634184a15e395f7db7e4483b396e8675b026e734395"
+    },
+    {
+      "path": "src/styles/result.css",
+      "sha256": "25dd1c729a96c05a7ed1eefdb83071219e24bd162df664567f55c4621dbfcd6e"
+    },
+    {
+      "path": "src/styles/scene.css",
+      "sha256": "1c52ff151533da1c8888d7d49aaf5945b7fdecc1db9d38dcac4c84a3c780e5ef"
+    },
+    {
+      "path": "src/styles/unified-scene.css",
+      "sha256": "5ed4d73677127793f2feb2060c583520f6368e347bc70e01b5da9640bc9052e5"
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "01816b5e5e61309d12a858a73ce4f127afe9871292176e6a6f3ffad35b07611e"
+    },
+    {
+      "path": "src/tests/navigation.test.js",
+      "sha256": "b0440e76207ada53a7e0d8a28d2e38550e83ef08ae296a906aee3ebfe3c6867e"
+    },
+    {
+      "path": "src/tests/questions.test.js",
+      "sha256": "86caff13588f3ba783ce14fb1a0a7d2eb6f58bb4f5bbef94be852e1d8985bad7"
+    },
+    {
+      "path": "src/tests/scoring.test.js",
+      "sha256": "e56f1972183bf78dad3a24572f7400d90f282cf24791576709b6634fbb770a82"
+    },
+    {
+      "path": "src/tests/tenrai.test.js",
+      "sha256": "94cd6a7a9a30dd950cb0fb99246ffcf69ab1ab8bbbe6114ccc70aed09d79b64c"
+    },
+    {
+      "path": "src/tests/v4-editorial.test.js",
+      "sha256": "0b2d03e80fe47fae613a5de9d696fc4bad8f65e3ca3c454f063d035e47c5292a"
+    },
+    {
+      "path": "src/tests/wingReactions.test.js",
+      "sha256": "0db527c66e4ae5074faaaec853661e2bc9865dd37d43945e43de0eba4fe267ca"
+    },
+    {
+      "path": "review/divination.css",
+      "sha256": "5e2c759aad92b2d03105900d6c8820646371d4fce8cd27f9ef53832e8d5f95c1"
+    },
+    {
+      "path": "review/divination.html",
+      "sha256": "3fc5ef9fa81a877f315e1ca0258e52fa7a1837d647139b3c6a9900c720a2e1cf"
+    },
+    {
+      "path": "review/divination.js",
+      "sha256": "281c93e03e235806049ba1e685591b6cd4674929e5ca099599a6dd2e9ef4b09a"
+    },
+    {
+      "path": "review/results.css",
+      "sha256": "12330ca0bb15a91d6403509c4673deb77fe4e95e74d1aede082c23cbe2ba9a88"
+    },
+    {
+      "path": "review/results.html",
+      "sha256": "47c2e4fd7620261d1e6a318d3f2541b501f20f0916526db3950ba44077259b42"
+    },
+    {
+      "path": "review/results.js",
+      "sha256": "6c4f2adfe850ada461e39e62def3382be67db51b237b03ef2e27ec45ff2c2300"
+    }
+  ],
+  "assetsChanged": 0,
+  "unapprovedDialogueOrAnimationChanges": 0,
+  "mainChanges": "browser title only",
+  "viewports": [
+    {
+      "name": "1920x1080",
+      "errors": [],
+      "observedComment": {
+        "remainingMs": 3023
+      },
+      "title": "HxH - Nen Divination Test",
+      "header": "Nen Divination Test",
+      "width": 1920,
+      "focusText": "WINGOra concentrati.Avvicina le mani al bicchiere e mantieni il Nen."
+    },
+    {
+      "name": "1440x900",
+      "errors": [],
+      "observedComment": {
+        "remainingMs": 3315
+      },
+      "title": "HxH - Nen Divination Test",
+      "header": "Nen Divination Test",
+      "width": 1440,
+      "focusText": "WINGOra concentrati.Avvicina le mani al bicchiere e mantieni il Nen."
+    },
+    {
+      "name": "390x844",
+      "errors": [],
+      "observedComment": {
+        "remainingMs": 3444
+      },
+      "title": "HxH - Nen Divination Test",
+      "header": "Nen Divination Test",
+      "width": 390,
+      "focusText": "WINGOra concentrati.Avvicina le mani al bicchiere e mantieni il Nen."
+    },
+    {
+      "name": "375x667",
+      "errors": [],
+      "observedComment": {
+        "remainingMs": 3453
+      },
+      "title": "HxH - Nen Divination Test",
+      "header": "Nen Divination Test",
+      "width": 375,
+      "focusText": "WINGOra concentrati.Avvicina le mani al bicchiere e mantieni il Nen."
+    }
+  ],
+  "comparisonAndAnimationGalleryVerified": true
+}

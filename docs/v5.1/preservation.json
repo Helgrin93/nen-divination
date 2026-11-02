@@ -1,0 +1,181 @@
+{
+  "baseCommit": "0d6261575c84964b3f6b92ba381f39fac580f8c3",
+  "preserved": [
+    {
+      "path": "public/assets/scene-v3/unified-goblet-scene.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "77beed31fd9634c0722c8ea16a256f29de703aff60d2daa60b0867f811581c61"
+    },
+    {
+      "path": "public/assets/divination/rug-border-repair.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "0eaa4a53e7c8a01dddcd8401feea135baaa70fd00462f337396e13a2f95eea07"
+    },
+    {
+      "path": "src/game/scoring.js",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "6ec672512f9c9c5e38dd14728197f98996f22c65280c822ab95dd69758585db6"
+    },
+    {
+      "path": "src/game/stateMachine.js",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "1c494f6759744f1824d1dff2d9c69945dab2ceb732e28a5d01e559d04574652b"
+    },
+    {
+      "path": "src/data/questions.js",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "3b257450caf9fbc6963dcc8816734259ea7514c91a906aec32ad589d306b5a2a"
+    },
+    {
+      "path": "src/data/nenTypes.js",
+      "unchanged": true,
+      "exactBytesUnchanged": false,
+      "sha256": "0dc64e48431fe6e9c214e74a68a90a8ff345ceff5ba061bda2dd068fcb9c71de"
+    },
+    {
+      "path": "src/components/divinationTimeline.js",
+      "unchanged": true,
+      "exactBytesUnchanged": false,
+      "sha256": "67ae883813ce1e572517d8e6499007f6085327fc3b6a69308d014a9269618bec"
+    },
+    {
+      "path": "src/components/WaterArtPass.js",
+      "unchanged": true,
+      "exactBytesUnchanged": false,
+      "sha256": "b90b4b0f86921c909201d2fa7c92c366e9c74f668b86e45145c6f549cd016404"
+    },
+    {
+      "path": "src/components/WaterScene.js",
+      "unchanged": true,
+      "exactBytesUnchanged": false,
+      "sha256": "c7596eb4530a3f7b3bd0e53f4421fbf01c683cc5302c4e23cccbde0fcf55b4d0"
+    },
+    {
+      "path": "src/components/CharacterCards.js",
+      "unchanged": true,
+      "exactBytesUnchanged": false,
+      "sha256": "f968a8b14f5872d91a832cf747bd93012f33b0ba2380c0acd83231993ad7777e"
+    },
+    {
+      "path": "public/assets/divination/leaf-states-atlas.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "fed996f69fdbe2918084c2e98283b7c3bc6de38c672f54ace9963b519fc2945f"
+    },
+    {
+      "path": "public/assets/divination/leaf-flex-atlas-v3.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "8e6713ad829fa3dccb0056e504a8dbfb52848c8c06c6db6ddd1d98febdc950ea"
+    },
+    {
+      "path": "public/assets/divination/overflow-atlas.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "44d4854a0d6bcc1fc38272e437ad549f36650fec564c30fed2d5e733af0d7838"
+    },
+    {
+      "path": "public/assets/divination/overflow-ink-atlas-v3.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "cf7ee0fef4f18220495390e8c6f66d680f6283ca711db28e8ad4a3a90181efdf"
+    },
+    {
+      "path": "public/assets/divination/diffusion-mattes-v3.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "39271051674a37c493fb49427ba1f69d0961fb4ba72fb2a8530878691d7269b3"
+    },
+    {
+      "path": "public/assets/divination/sediment-atlas-v3.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "76e75dbbf7714a8fe26b576705b34b99bca4af2f0181c49d6d65c24b8e95682f"
+    },
+    {
+      "path": "public/assets/divination/water-surface-clean.png",
+      "unchanged": true,
+      "exactBytesUnchanged": true,
+      "sha256": "5390faadb481d06a61f14d4b31e1d35f83258ce5cebc4f58ae00eb8adbc6ec6a"
+    }
+  ],
+  "radarUnchanged": true,
+  "spriteChecks": [
+    {
+      "name": "neutral",
+      "changed": 29400,
+      "bounds": {
+        "left": 83,
+        "top": 961,
+        "right": 1391,
+        "bottom": 1023
+      },
+      "protectedHeadChanged": 0,
+      "protectedSkinChanged": 0
+    },
+    {
+      "name": "smile",
+      "changed": 734882,
+      "bounds": {
+        "left": 0,
+        "top": 26,
+        "right": 1431,
+        "bottom": 1023
+      },
+      "protectedHeadChanged": null,
+      "protectedSkinChanged": null
+    },
+    {
+      "name": "eyes-closed",
+      "changed": 739556,
+      "bounds": {
+        "left": 0,
+        "top": 25,
+        "right": 1505,
+        "bottom": 1023
+      },
+      "protectedHeadChanged": null,
+      "protectedSkinChanged": null
+    },
+    {
+      "name": "gesture",
+      "changed": 26514,
+      "bounds": {
+        "left": 83,
+        "top": 961,
+        "right": 1412,
+        "bottom": 1023
+      },
+      "protectedHeadChanged": 0,
+      "protectedSkinChanged": 0
+    }
+  ],
+  "panoramaCentralChannelsChanged": 0,
+  "viewports": [
+    {
+      "name": "1920x1080",
+      "errors": [],
+      "documentWidth": 1920
+    },
+    {
+      "name": "1440x900",
+      "errors": [],
+      "documentWidth": 1440
+    },
+    {
+      "name": "390x844",
+      "errors": [],
+      "documentWidth": 390
+    },
+    {
+      "name": "375x667",
+      "errors": [],
+      "documentWidth": 375
+    }
+  ]
+}

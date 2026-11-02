@@ -2,10 +2,9 @@
 .quiz-scene-art{container-type:size}
 .scene .quiz-scene-art{background:#d8bd93}
 .water-stage.unified-stage{top:0;left:50%;width:150cqh;height:auto;aspect-ratio:3/2;transform:translateX(-50%);mask-image:none}
-/* Real side art in the same 1536×1024 camera; the original centre is intact. */
-.unified-stage .room-wing{position:absolute;top:0;width:calc(100% / 3);height:100%;max-width:none;pointer-events:none}
-.unified-stage .room-wing-left{right:100%}
-.unified-stage .room-wing-right{left:100%}
+/* One raster owns the joins; its centre is the exact original 1536×1024.
+   The registered central plate also supplies the water compositor and fallback. */
+.unified-stage .room-panorama{position:absolute;top:0;left:calc(-100% / 3);width:calc(100% * 5 / 3);height:100%;max-width:none;pointer-events:none}
 .unified-stage .glass-plate{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:none}
 .unified-stage .rug-border-repair{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .unified-stage .wing-plate{top:0;left:50%;width:64%;height:64%;aspect-ratio:3/2;z-index:1;mask-image:var(--wing-occlusion);mask-size:100% 100%;mask-repeat:no-repeat}

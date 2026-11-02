@@ -1,5 +1,6 @@
 import { nenTypes } from '../data/nenTypes.js';
 import {resultPresentation,resultRadarOrder as radarOrder} from '../data/resultPresentation.js';
+import nenSymbols from '../data/nenSymbols.json';
 
 export function radarPoint(index, radius, cx = 300, cy = 270) {
   const angle = (index * 60 - 90) * Math.PI / 180;
@@ -23,11 +24,11 @@ export function radarSvg(values, t, accent='var(--accent)') {
     <g class="radar-shape"><polygon points="${radarOrder.map((type,i) => radarPoint(i,150*values[type]/100).join(',')).join(' ')}" fill="${accent}" fill-opacity=".3" stroke="${accent}" stroke-width="2.5"/>
     ${radarOrder.map((type,i) => {const [x,y]=radarPoint(i,150*values[type]/100);return `<circle cx="${x}" cy="${y}" r="3" fill="#f0e9d2"/>`;}).join('')}</g>
     ${radarOrder.map((type,i) => {
-      const [x,y]=radarPoint(i,150),colour=resultPresentation[type].colour,label=radarLabels[i];
+      const [x,y]=radarPoint(i,150),colour=resultPresentation[type].colour,label=radarLabels[i],glyph=nenSymbols[type];
       return `<g class="radar-axis" data-nen="${type}" data-value="${values[type]}">
         <circle class="radar-medallion" cx="${x}" cy="${y}" r="23" fill="#071017" stroke="${colour}" stroke-width="2"/>
         <circle cx="${x}" cy="${y}" r="18.5" fill="${colour}"/>
-        <text class="radar-kanji" x="${x}" y="${y+9}" text-anchor="middle" fill="#080d13" font-family="'Yu Mincho','Noto Serif CJK JP','MS Mincho',serif" font-weight="700" font-size="27">${resultPresentation[type].symbol}</text>
+        <svg class="radar-kanji" x="${x-13}" y="${y-13}" width="26" height="26" viewBox="${glyph.viewBox}" fill="#080d13" aria-label="${glyph.symbol}"><title>${glyph.symbol}</title><path d="${glyph.path}"/></svg>
         <text class="radar-name" x="${label.x}" y="${label.y}" text-anchor="${label.anchor}" fill="${colour}" font-family="Georgia,serif" font-size="30">${nenTypes[type].name}</text>
         <text class="radar-value" x="${label.x}" y="${label.y+45}" text-anchor="${label.anchor}" fill="${colour}" font-family="Georgia,serif" font-size="39">${values[type]}%</text>
       </g>`;

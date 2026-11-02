@@ -18,11 +18,10 @@ export const translations = {
     power: 'POTERE NEN', means: 'COSA SIGNIFICA', characters: 'Alcuni personaggi che hanno questo tipo di Nen:', save: 'Salva risultato', share: 'Condividi', replay: 'Riprova il quiz',
     missing: 'Immagine non disponibile', source: 'Fonte', portrait:'Ritratto di', showMore:'Mostra altri 2 personaggi', showLess:'Mostra meno', mentorFallback: 'Ritratto originale non disponibile',
     saved: 'La tua card PNG è pronta.', shared: 'Risultato condiviso.', cancelled: 'Condivisione annullata.', downloaded: 'Condivisione non disponibile: card PNG scaricata.', exportError: 'Non è stato possibile creare la card. Riprova.',
-    ludic: 'Quiz ludico ispirato alla teoria di Hisoka: non è un metodo canonico o scientifico per determinare la personalità.',
     fan: 'Fan project non ufficiale. Nessuna affiliazione con i titolari di Hunter × Hunter.', privacy: 'Nessun account, nessun tracciamento. Solo la lingua viene salvata su questo dispositivo.',
     traitsNote: 'I tratti del quiz sono un’interpretazione ludica della teoria di Hisoka, distinti dalle abilità dell’aura.',
     shareNote: 'Affinità relative del quiz · Non è una misura scientifica', saveBusy: 'Creo la card…',
-    story:'Salva Story 9:16', copyLink:'Copia link al quiz', storyHint:'Su Instagram, aggiungi uno sticker Link alla Story e incolla il link al quiz.', storySticker:'Spazio per lo sticker Link', storyCharacters:'ALCUNI PERSONAGGI CON QUESTO NEN', storySaved:'Story PNG pronta. Aggiungi lo sticker Link su Instagram.', linkCopied:'Link al quiz copiato.', copyManual:'Seleziona e copia il link al quiz:',
+    story:'Salva Story 9:16', copyLink:'Copia link al quiz', storySticker:'Spazio per lo sticker Link', storyCharacters:'ALCUNI PERSONAGGI CON QUESTO NEN', storySaved:'Story PNG pronta. Aggiungi lo sticker Link su Instagram.', linkCopied:'Link al quiz copiato.', copyManual:'Seleziona e copia il link al quiz:',
   },
   en: {
     skip: 'Skip to experience',
@@ -43,11 +42,10 @@ export const translations = {
     power: 'NEN ABILITY', means: 'WHAT IT MEANS', characters: 'Some characters with this Nen type:', save: 'Save result', share: 'Share', replay: 'Retake quiz',
     missing: 'Image unavailable', source: 'Source', portrait:'Portrait of', showMore:'Show 2 more characters', showLess:'Show less', mentorFallback: 'Original portrait unavailable',
     saved: 'Your PNG card is ready.', shared: 'Result shared.', cancelled: 'Sharing cancelled.', downloaded: 'Sharing is unavailable: PNG card downloaded.', exportError: 'The card could not be created. Please try again.',
-    ludic: 'A playful quiz inspired by Hisoka’s theory, not a canonical or scientific personality assessment.',
     fan: 'Unofficial fan project. Not affiliated with the owners of Hunter × Hunter.', privacy: 'No account, no tracking. Only your language is saved on this device.',
     traitsNote: 'The quiz traits are a playful interpretation of Hisoka’s theory, separate from aura abilities.',
     shareNote: 'Relative quiz affinity · Not a scientific assessment', saveBusy: 'Creating your card…',
-    story:'Save Story 9:16', copyLink:'Copy quiz link', storyHint:'On Instagram, add a Link sticker to your Story and paste the quiz link.', storySticker:'Space for your Link sticker', storyCharacters:'SOME CHARACTERS WITH THIS NEN', storySaved:'Story PNG ready. Add a Link sticker on Instagram.', linkCopied:'Quiz link copied.', copyManual:'Select and copy the quiz link:',
+    story:'Save Story 9:16', copyLink:'Copy quiz link', storySticker:'Space for your Link sticker', storyCharacters:'SOME CHARACTERS WITH THIS NEN', storySaved:'Story PNG ready. Add a Link sticker on Instagram.', linkCopied:'Quiz link copied.', copyManual:'Select and copy the quiz link:',
   },
 };
 

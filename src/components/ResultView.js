@@ -19,7 +19,6 @@ export function resultView(result, lang, t) {
     </section>
     <section class="characters panel"><h2 id="characters-heading">${t.characters}</h2><div class="character-grid">${characterCards(result.primary,lang,t)}</div><button class="characters-toggle" data-action="characters" aria-expanded="false" aria-controls="extra-characters">${t.showMore}</button><div id="extra-characters" class="character-expansion" inert aria-hidden="true"><div><div class="character-grid">${characterCards(result.primary,lang,t,{extra:true})}</div></div></div></section>
     <div class="result-actions"><button class="button" data-action="save">${icon('download')}${t.save}</button><button class="button share-button" data-action="share">${icon('share')}${t.share}</button><button class="button" data-action="replay">${icon('replay')}${t.replay}</button></div>
-    <div class="story-actions"><button class="button" data-action="story">${icon('download')}${t.story}</button><button class="button" data-action="copy-link">${icon('share')}${t.copyLink}</button></div><p class="story-hint">${t.storyHint}</p><label class="copy-link-fallback" hidden>${t.copyManual}<input type="url" value="https://helgrin93.github.io/nen-divination/" readonly></label>
-    <p class="quiz-disclaimer">${t.ludic}</p>
+    <div class="story-actions"><button class="button" data-action="story">${icon('download')}${t.story}</button><button class="button" data-action="copy-link">${icon('share')}${t.copyLink}</button></div><label class="copy-link-fallback" hidden>${t.copyManual}<input type="url" value="https://helgrin93.github.io/nen-divination/" readonly></label>
   </div>`;
 }
