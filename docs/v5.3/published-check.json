@@ -1,0 +1,300 @@
+{
+  "url": "https://helgrin93.github.io/nen-divination/",
+  "title": "HxH - Nen Divination Test",
+  "images": [
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/brand/hunter-logo.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/room-v5/room-panorama.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/scene-v3/unified-goblet-scene.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/divination/rug-border-repair.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-neutral.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-smile.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-eyes-closed.png",
+      "loaded": true,
+      "loading": "auto"
+    },
+    {
+      "src": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-gesture.png",
+      "loaded": true,
+      "loading": "auto"
+    }
+  ],
+  "requests": [
+    {
+      "url": "https://helgrin93.github.io/nen-divination/",
+      "startTime": 1793638545193.555,
+      "domainLookupStart": 0,
+      "domainLookupEnd": 28.67,
+      "connectStart": 28.811,
+      "secureConnectionStart": 53.818,
+      "connectEnd": 83.531,
+      "requestStart": 83.852,
+      "responseStart": 256.741,
+      "responseEnd": 258.322
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/index-C_XJqywZ.css",
+      "startTime": 1793638545462.022,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.132,
+      "responseStart": 156.099,
+      "responseEnd": 162.543
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/index-SxPoAi_z.js",
+      "startTime": 1793638545461.411,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.292,
+      "responseStart": 186.524,
+      "responseEnd": 218.225
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/rug-border-repair.png",
+      "startTime": 1793638545684.5059,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.353,
+      "responseStart": 138.337,
+      "responseEnd": 150.72
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/brand/hunter-logo.png",
+      "startTime": 1793638545683.7239,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.216,
+      "responseStart": 201.446,
+      "responseEnd": 343.661
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/scene-v3/unified-goblet-scene.png",
+      "startTime": 1793638545684.369,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.398,
+      "responseStart": 164.338,
+      "responseEnd": 547.197
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-neutral.png",
+      "startTime": 1793638545685.457,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.282,
+      "responseStart": 149.198,
+      "responseEnd": 613.421
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/room-v5/room-panorama.png",
+      "startTime": 1793638545684.22,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.435,
+      "responseStart": 198.732,
+      "responseEnd": 621.253
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-eyes-closed.png",
+      "startTime": 1793638545686.6902,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.489,
+      "responseStart": 196.63,
+      "responseEnd": 681.805
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/water-surface-clean.png",
+      "startTime": 1793638545689.023,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.121,
+      "responseStart": 216.733,
+      "responseEnd": 687.704
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-gesture.png",
+      "startTime": 1793638545687.588,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.145,
+      "responseStart": 197.773,
+      "responseEnd": 757.993
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/leaf-states-atlas.png",
+      "startTime": 1793638545688.02,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.452,
+      "responseStart": 192.236,
+      "responseEnd": 802.932
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/scene-v3/wing-smile.png",
+      "startTime": 1793638545686.2268,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.792,
+      "responseStart": 198.652,
+      "responseEnd": 816.743
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/sediment-atlas-v3.png",
+      "startTime": 1793638545689.9731,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.098,
+      "responseStart": 192.315,
+      "responseEnd": 818.678
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/overflow-ink-atlas-v3.png",
+      "startTime": 1793638545689.5251,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.196,
+      "responseStart": 192.021,
+      "responseEnd": 828.891
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/diffusion-mattes-v3.png",
+      "startTime": 1793638545690.262,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.217,
+      "responseStart": 191.489,
+      "responseEnd": 876.094
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/overflow-atlas.png",
+      "startTime": 1793638545688.253,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.377,
+      "responseStart": 192.495,
+      "responseEnd": 908.616
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/leaf-flex-atlas-v3.png",
+      "startTime": 1793638545689.368,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.289,
+      "responseStart": 192.606,
+      "responseEnd": 1055.396
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/hands-poses.png",
+      "startTime": 1793638545690.7808,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.089,
+      "responseStart": 191.833,
+      "responseEnd": 1088.352
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/assets/divination/table-clean.png",
+      "startTime": 1793638545690.394,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.157,
+      "responseStart": 190.798,
+      "responseEnd": 1090.771
+    },
+    {
+      "url": "https://helgrin93.github.io/nen-divination/favicon.svg?v=hunter-mark-2",
+      "startTime": 1793638547121.8801,
+      "domainLookupStart": -1,
+      "domainLookupEnd": -1,
+      "connectStart": -1,
+      "secureConnectionStart": -1,
+      "connectEnd": -1,
+      "requestStart": 0.701,
+      "responseStart": 143.638,
+      "responseEnd": 144.65
+    }
+  ]
+}

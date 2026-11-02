@@ -3,6 +3,7 @@ import './styles/quiz-scene.css';
 import './styles/divination.css';
 import './styles/result.css';
 import './styles/unified-scene.css';
+import './styles/loading-audio.css';
 import { translations, preferredLanguage } from './data/translations.js';
 import { nenTypes } from './data/nenTypes.js';
 import { createAttempt, selectAnswer, advance, goBack, beginConcentration, reveal } from './game/stateMachine.js';
@@ -17,6 +18,9 @@ import { shareResult,copyQuizLink } from './game/share.js';
 import { createWingReactions } from './game/wingReactions.js';
 import { setupCharacterCards } from './components/CharacterCards.js';
 import { siteBrand } from './components/SiteBrand.js';
+import {prepareImage,revealInitialScene} from './services/sceneLoading.js';
+import {createMusic} from './services/music.js';
+import {musicTracks,musicSettings} from './audio/tracks.js';
 
 let storage;
 try { storage=window.localStorage; } catch { /* The app works without storage. */ }
@@ -29,14 +33,24 @@ const shownReactions=new Set();
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelector('#app').innerHTML=`
   <header class="site-header">${siteBrand()}
-  <nav class="language-switch" aria-label="Language"><button data-lang="it" aria-label="Italiano">IT</button><span aria-hidden="true">/</span><button data-lang="en" aria-label="English">EN</button></nav></header>
-  <main id="experience"><section class="scene" data-phase="intro" data-effect="none">${quizScene()}<div class="scene-hold-slot"></div><p class="scene-effect-caption" aria-live="polite"></p></section><div id="content" class="content"></div></main>
+  <div class="header-controls"><button class="audio-toggle" type="button" data-audio aria-pressed="false">${icon('audioOff')}</button><nav class="language-switch" aria-label="Language"><button data-lang="it" aria-label="Italiano">IT</button><span aria-hidden="true">/</span><button data-lang="en" aria-label="English">EN</button></nav></div></header>
+  <div class="scene-loader" role="status" aria-live="polite"><span class="loading-mark" aria-hidden="true"></span><span data-loading-label></span></div>
+  <main id="experience" data-loading="loading" aria-busy="true" inert><section class="scene" data-phase="intro" data-effect="none">${quizScene()}<div class="scene-hold-slot"></div><p class="scene-effect-caption" aria-live="polite"></p></section><div id="content" class="content"></div></main>
   <footer class="site-footer"><span class="footer-mark">NEN DIVINATION <span aria-hidden="true">·</span> HUNTER × HUNTER</span><p data-i18n="fan"></p><p data-i18n="privacy"></p></footer>
   <div class="toast" role="status" aria-live="polite"></div>`;
 const content=document.querySelector('#content'),scene=document.querySelector('.scene');
-const setExpression=setupQuizScene(scene);
-const waterScene=mountWaterScene(scene);
+const setExpression=setupQuizScene(scene,{deferPoses:true});
+const waterScene=mountWaterScene(scene,{deferEffects:true,poseReady:setExpression.ready});
 const handsMotion=mountHandsMotion(scene);
+const music=createMusic({tracks:musicTracks,storage,...musicSettings,onChange:updateAudio});
+function updateAudio(){
+  const button=document.querySelector('[data-audio]');if(!button)return;
+  const {status,playing}=music.getState();
+  const labels=lang==='it'?{playing:'Disattiva musica',off:'Attiva musica',blocked:'Avvia musica',idle:'Avvia musica',loading:'Musica in caricamento',unavailable:'Musica non disponibile'}:{playing:'Turn music off',off:'Turn music on',blocked:'Play music',idle:'Play music',loading:'Music loading',unavailable:'Music unavailable'};
+  const label=labels[status];button.setAttribute('aria-label',label);button.title=label;
+  button.setAttribute('aria-pressed',String(playing));button.dataset.audioState=status;
+  button.innerHTML=icon(playing?'audio':'audioOff');
+}
 scene.addEventListener('divinationstage',({detail})=>{
   if(state.phase!=='waterEffect')return;
   syncRevelation();
@@ -55,6 +69,8 @@ const t=()=>translations[lang];
 function translate(){
   document.documentElement.lang=lang;
   document.title='HxH - Nen Divination Test';
+  updateAudio();
+  const loadingLabel=document.querySelector('[data-loading-label]');if(loadingLabel)loadingLabel.textContent=lang==='it'?'Preparazione della scena…':'Preparing the scene…';
   scene.setAttribute('aria-label',t().sceneLabel);
   document.querySelector('.language-switch').setAttribute('aria-label',lang==='it'?'Lingua':'Language');
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t()[el.dataset.i18n]);
@@ -93,6 +109,8 @@ function render({focus=false}={}){
   cancelAnimationFrame(revelationFrame);
   cleanupHold?.();cleanupHold=null;holdActive=false;
   const tr=t(), phase=state.phase;
+  if(phase==='result')music.setPhase('result');
+  else if(['intro','quiz','bonus','divinationIntro'].includes(phase))music.setPhase('intro');
   const visualPhase=phase==='divinationIntro'?'concentration':phase;
   handsMotion.setPhase(visualPhase);
   handsMotion.setActive(false);waterScene.setConcentration(false);
@@ -131,6 +149,7 @@ function render({focus=false}={}){
     scene.querySelector('.scene-hold-slot').innerHTML=`<button class="hold-button" aria-describedby="hold-description"><span data-i18n="hold"></span><small>4.5 s</small></button><div class="hold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><button class="text-button accessible-reveal" data-action="reveal" data-i18n="accessible"></button><span id="hold-description" class="sr-only" data-i18n="holdHelp"></span><span class="hold-announcement sr-only" aria-live="polite"></span>`;
     const button=scene.querySelector('.hold-button');
     cleanupHold=mountHold({button,progress:scene.querySelector('.hold-progress'),onStart:()=>{
+      music.setPhase('divination',{gesture:true});
       holdActive=true;handsMotion.setActive(true);waterScene.setConcentration(true);scene.classList.add('is-holding');button.querySelector('span').textContent=t().hold;scene.querySelector('.hold-announcement').textContent=t().holding;
     },onReset:()=>{holdActive=false;handsMotion.setActive(false);waterScene.setConcentration(false);scene.classList.remove('is-holding');button.querySelector('span').textContent=t().hold;scene.querySelector('.hold-announcement').textContent=t().reset;},onComplete:completeHold});
   }else if(phase==='waterEffect'){
@@ -156,6 +175,7 @@ function completeHold(){
 let toastTimer;
 function toast(message){const el=document.querySelector('.toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),6000);}
 document.addEventListener('click',async e=>{
+  if(e.target.closest('[data-audio]')){music.toggle();return;}
   const language=e.target.closest('[data-lang]');
   if(language){
     const answerScroll=content.querySelector('.answers')?.scrollTop || 0;
@@ -176,8 +196,9 @@ document.addEventListener('click',async e=>{
   }
   const action=e.target.closest('[data-action]')?.dataset.action;
   if(!action)return;
-  if(action==='begin'){state.phase='quiz';render({focus:true});bringContentIntoView();}
+  if(action==='begin'){music.interact();state.phase='quiz';render({focus:true});bringContentIntoView();}
   if(action==='resume'&&dialogue?.kind!=='short'){
+    music.interact();
     if(state.phase==='divinationIntro'){
       beginConcentration(state);render({focus:true});return;
     }
@@ -200,7 +221,7 @@ document.addEventListener('click',async e=>{
     else bringContentIntoView();
   }
   if(action==='back'){goBack(state);render({focus:true});bringContentIntoView();}
-  if(action==='reveal')completeHold();
+  if(action==='reveal'){music.setPhase('divination',{gesture:true});completeHold();}
   if(action==='replay'){
     clearTimeout(effectTimer);clearTimeout(dialogueTimer);dialogue=null;shownReactions.clear();state=createAttempt();reactions=createWingReactions();waterScene.reset();scene.dataset.effect='none';render({focus:true});window.scrollTo({top:0,behavior:reducedMotion.matches?'instant':'smooth'});
   }
@@ -217,3 +238,10 @@ document.addEventListener('click',async e=>{
   }
 });
 render();
+const experience=document.querySelector('#experience');
+const critical=[...scene.querySelectorAll('img[src]:not(.wing-sprite)'),document.querySelector('.brand-logo')];
+revealInitialScene(experience,[...critical.map(img=>prepareImage(img)),setExpression.ready,handsMotion.ready,waterScene.initialReady]).then(()=>{
+  // The first composition is already on screen. Prepare later expressions and
+  // effect atlases independently; portraits and music never hold the reveal.
+  setExpression.preload();waterScene.preload();music.start();
+});

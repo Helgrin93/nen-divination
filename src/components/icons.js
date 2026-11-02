@@ -1,4 +1,6 @@
 const paths = {
+  audio: '<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
+  audioOff: '<path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 6 6m0-6-6 6"/>',
   leaf: '<path d="M5 20C4 9 12 4 21 3c0 10-4 17-16 17Zm0 0L17 8M10 14l-1-4m5 0 4 1"/>',
   arrow: '<path d="M5 12h14m-5-5 5 5-5 5"/>',
   back: '<path d="M19 12H5m5-5-5 5 5 5"/>',

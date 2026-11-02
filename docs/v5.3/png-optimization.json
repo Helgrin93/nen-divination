@@ -1,0 +1,56 @@
+[
+  {
+    "file": "room-v5/room-panorama.png",
+    "before": 3917077,
+    "after": 2494829,
+    "identicalPixels": true
+  },
+  {
+    "file": "scene-v3/unified-goblet-scene.png",
+    "before": 1734500,
+    "after": 1528977,
+    "identicalPixels": true
+  },
+  {
+    "file": "scene-v3/wing-neutral.png",
+    "before": 1282548,
+    "after": 913129,
+    "identicalPixels": true
+  },
+  {
+    "file": "scene-v3/wing-smile.png",
+    "before": 1283799,
+    "after": 914687,
+    "identicalPixels": true
+  },
+  {
+    "file": "scene-v3/wing-eyes-closed.png",
+    "before": 1281921,
+    "after": 912998,
+    "identicalPixels": true
+  },
+  {
+    "file": "scene-v3/wing-gesture.png",
+    "before": 1336370,
+    "after": 958448,
+    "identicalPixels": true
+  },
+  {
+    "file": "divination/table-clean.png",
+    "before": 1662248,
+    "after": 1432653,
+    "identicalPixels": true
+  },
+  {
+    "file": "divination/hands-poses.png",
+    "before": 773534,
+    "after": 653346,
+    "identicalPixels": true
+  },
+  {
+    "file": "divination/rug-border-repair.png",
+    "before": 85659,
+    "after": 42336,
+    "identicalPixels": true
+  }
+]

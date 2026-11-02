@@ -1,6 +1,7 @@
 ﻿// Registered cel materials: no scene-wide filter and no runtime leaf rotation.
 import {clamp,smooth} from './divinationTimeline.js';
 import {artData} from './divinationArtData.js';
+import {createRisingWater} from './EnhancementWater.js';
 const make=(w,h)=>Object.assign(document.createElement('canvas'),{width:w,height:h});
 const waterMaterials=new WeakMap();
 // Keep the illustrated spill silhouettes and ink, but give their translucent
@@ -60,22 +61,7 @@ export function createWaterArtPass({original,base,leaf,assets}){
   const c=make(64,64),x=c.getContext('2d',{willReadFrequently:true});x.drawImage(assets.residues,i%5*64,Math.floor(i/5)*64,64,64,0,0,64,64);
   x.getImageData(0,0,64,64);return c;
  });
- const capFrames=Array.from({length:25},(_,f)=>{
-  const rise=f/24*18,c=make(300,108),x=c.getContext('2d');x.translate(-350,-45);
-  // The surface expands toward the inner rim ellipse as the cup fills. Its
-  // front contact stays behind the fixed glass lip; no exposed wood band.
-  const rx=141+f/24*5,ry=24+f/24*8;
-  // Both the raised surface and its old footprint use actual submerged
-  // material. Sampling the air gap here made a separate pale, opaque layer.
-  x.save();x.beginPath();x.ellipse(500,105,143,29,0,0,Math.PI*2);x.clip();
-  x.drawImage(base,366,170,268,64,357,76,286,58);x.restore();
-  x.save();x.beginPath();x.ellipse(500,105-rise,rx,ry,0,0,Math.PI*2);x.clip();
-  x.drawImage(base,359,81,282,48,500-rx,105-rise-ry,rx*2,ry*2);x.restore();
-  // A thin local meniscus, paired with the illustrated spill lip, establishes
-  // the contact line without painting an opaque silver disk.
-  x.save();x.beginPath();x.ellipse(500,105-rise,rx-1,ry-.5,0,0,Math.PI*2);x.strokeStyle='rgba(239,239,216,.48)';x.lineWidth=1.15;x.stroke();x.restore();return c;
- });
- const fullCup=new Path2D('M364 104 Q500 58 636 104 C638 217 615 334 511 363 C413 365 365 265 364 104Z');fullCup.ellipse(500,89,146,39,0,0,Math.PI*2);
+ const risingWater=createRisingWater({original,base});
  const restoreRim=new Path2D();restoreRim.ellipse(500,92,157,48,0,0,Math.PI*2);restoreRim.ellipse(500,89,146,39,0,0,Math.PI*2);
  const front=new Path2D('M373 111 Q386 115 402 118 C391 231 416 321 454 344 L435 337 C393 302 374 216 373 111Z M612 114 L631 106 C637 225 610 312 566 341 L554 345 C599 295 616 216 612 114Z');
  let spills=waterMaterials.get(assets.flow);
@@ -144,13 +130,11 @@ export function createWaterArtPass({original,base,leaf,assets}){
   const a=artData.overflow.flowTips[index*2+side],b=artData.overflow.flowTips[next*2+side];
   return {index,next,mix,x:(side?655:343)-artData.overflow.pivot[0]+a.x+(b.x-a.x)*mix,y:(side?86:81)-artData.overflow.pivot[1]+a.y+(b.y-a.y)*mix};
  }
- function enhancement(ctx,p,rise){
-  if(!p)return {surfaceY:105,droplets:0};clean(ctx);
-  const cap=Math.round(rise*24);ctx.save();ctx.clip(fullCup);ctx.globalAlpha=smooth(rise/.15);ctx.drawImage(capFrames[cap],350,45);ctx.restore();
-  ctx.save();ctx.clip(surfacePath);arc(ctx,491,105-rise*16,(p-.04)/.33,.28);ctx.restore();
-  originalLeaf(ctx,500,105-rise*18);restoreGlass(ctx);
-  // Preserve the actual lip without restoring the old, static front waterline.
-  ctx.save();ctx.clip(restoreRim,'evenodd');ctx.beginPath();ctx.rect(340,40,320,39);ctx.clip();ctx.drawImage(original,0,0);ctx.restore();
+ function enhancement(ctx,p){
+  if(!p)return {surfaceY:115,droplets:0};clean(ctx);
+  const water=risingWater(ctx,p);
+  ctx.save();ctx.beginPath();ctx.ellipse(500,water.surfaceY,145,34,0,0,Math.PI*2);ctx.clip();arc(ctx,491,water.surfaceY,(p-.04)/.33,.28);ctx.restore();
+  originalLeaf(ctx,500,water.leafY);water.restoreRim();
   if(p>.41&&p<.99){
    const fade=smooth((p-.41)/.045)*(1-smooth((p-.94)/.05));
    for(let side=0;side<2;side++){
@@ -172,7 +156,7 @@ export function createWaterArtPass({original,base,leaf,assets}){
    ctx.globalAlpha=wet;ctx.drawImage(wetTable,wetRect.x,wetRect.y);
    ctx.globalAlpha=.16*wet;ctx.drawImage(assets.overflow,90,786,653,139,wetRect.x,wetRect.y,wetRect.width,wetRect.height);ctx.restore();
   }
-  return {surfaceY:105-rise*18,droplets:drops,capFrame:cap};
+  return {surfaceY:water.surfaceY,droplets:drops};
  }
  function transmutation(ctx,p){
   // One initial impulse, then a genuine quiet interval before Wing's reply.

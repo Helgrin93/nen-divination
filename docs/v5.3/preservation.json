@@ -1,0 +1,264 @@
+[
+  {
+    "device": "desktop",
+    "sourceRevision": "931197701d5e9b00f5b1b97ae09c06253630f420",
+    "frames": [
+      {
+        "effect": "emission",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 1,
+        "identical": true
+      }
+    ]
+  },
+  {
+    "device": "mobile",
+    "sourceRevision": "931197701d5e9b00f5b1b97ae09c06253630f420",
+    "frames": [
+      {
+        "effect": "emission",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "emission",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "transmutation",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "conjuration",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "manipulation",
+        "p": 1,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.25,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.5,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 0.75,
+        "identical": true
+      },
+      {
+        "effect": "specialization",
+        "p": 1,
+        "identical": true
+      }
+    ]
+  }
+]

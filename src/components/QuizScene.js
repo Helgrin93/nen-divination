@@ -1,6 +1,7 @@
 // One photographic scene and one canvas persist from the quiz to the result.
 import { wing } from '../data/wing.js';
 import { wingOcclusionMask } from './sceneGeometry.js';
+import {prepareImage} from '../services/sceneLoading.js';
 const base = import.meta.env.BASE_URL;
 
 export function quizScene() {
@@ -10,7 +11,7 @@ export function quizScene() {
       <img class="glass-plate room-backdrop" src="${base}assets/scene-v3/unified-goblet-scene.png" width="1536" height="1024" alt="" fetchpriority="high">
       <img class="rug-border-repair" src="${base}assets/divination/rug-border-repair.png" width="1536" height="1024" alt="">
       <canvas class="hands-motion" width="1536" height="512" hidden></canvas>
-      <div class="scene-plate wing-plate">${Object.entries(wing.poses).map(([expression,src])=>`<img class="wing-sprite${expression==='neutral'?' is-active':''}" data-pose="${expression}" src="${base}${src}" alt="" ${expression==='neutral'?'fetchpriority="high"':''}>`).join('')}</div>
+      <div class="scene-plate wing-plate">${Object.entries(wing.poses).map(([expression,src])=>`<img class="wing-sprite${expression==='neutral'?' is-active':''}" data-pose="${expression}" ${expression==='neutral'?'src':'data-src'}="${base}${src}" width="1536" height="1024" decoding="async" alt="" ${expression==='neutral'?'fetchpriority="high"':'fetchpriority="low"'}>`).join('')}</div>
       <svg class="wing-table-contact" viewBox="0 0 1536 1024" aria-hidden="true"><defs>
         <radialGradient id="elbow-shadow"><stop stop-color="#584128" stop-opacity=".22"/><stop offset="1" stop-color="#584128" stop-opacity="0"/></radialGradient>
       </defs><g fill="url(#elbow-shadow)"><ellipse cx="423" cy="655" rx="88" ry="4"/><ellipse cx="1075" cy="655" rx="88" ry="4"/></g></svg>
@@ -19,7 +20,7 @@ export function quizScene() {
   </div>`;
 }
 
-export function setupQuizScene(scene) {
+export function setupQuizScene(scene,{deferPoses=false}={}) {
   const sprites=[...scene.querySelectorAll('.wing-sprite')];
   const ready=new Set();
   let requested='neutral';
@@ -39,17 +40,19 @@ export function setupQuizScene(scene) {
     scene.dataset.pose=available.dataset.pose;
     sprites.forEach(img=>img.classList.toggle('is-active',img===available));
   }
-  sprites.forEach(img=>{
+  const decodePose=img=>{
     async function decode(){
-      try{
-        await img.decode();
-        if(!img.naturalWidth || img.hidden)return;
+        if(!await prepareImage(img))return false;
         ready.add(img);img.dataset.ready='true';setExpression(requested);
-      }catch{ /* The current sprite remains visible if decoding fails. */ }
+        return true;
     }
-    img.addEventListener('load',decode,{once:true});
-    if(img.complete&&img.naturalWidth)decode();
-  });
+    return decode();
+  };
+  setExpression.ready=decodePose(sprites.find(img=>img.dataset.pose==='neutral'));
+  setExpression.preload=()=>Promise.all(sprites.filter(img=>img.dataset.src).map(img=>{
+    img.src=img.dataset.src;delete img.dataset.src;return decodePose(img);
+  }));
+  if(!deferPoses)setExpression.preload();
   scene.querySelectorAll('.quiz-scene-art img').forEach(img => {
     img.addEventListener('error', () => {
       img.hidden = true;

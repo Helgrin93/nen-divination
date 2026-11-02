@@ -1,4 +1,5 @@
 // Dedicated anatomical drawings, not a deformation of the tabletop painting.
+import {prepareImage} from '../services/sceneLoading.js';
 const WIDTH=1536,HEIGHT=512;
 const clamp=n=>Math.max(0,Math.min(1,n));
 const smooth=n=>{n=clamp(n);return n*n*(3-2*n);};
@@ -88,9 +89,12 @@ export function mountHandsMotion(scene){
     if(document.hidden){cancelAnimationFrame(frame);frame=0;holding=false;update();}
     else {amount=target;draw();if(holding)schedule();}
   }
-  clean.onload=atlas.onload=loaded;clean.onerror=atlas.onerror=assetError;
+  clean.fetchPriority=atlas.fetchPriority='high';
   clean.src=import.meta.env.BASE_URL+'assets/divination/table-clean.png';
   atlas.src=import.meta.env.BASE_URL+'assets/divination/hands-poses.png';
+  const preparation=Promise.all([prepareImage(clean),prepareImage(atlas)]).then(results=>{
+    if(results.every(Boolean)){loaded();return true;}assetError();return false;
+  });
   reduced.addEventListener('change',motionChange);document.addEventListener('visibilitychange',visibility);
-  return {setActive,setPhase,destroy(){cancelAnimationFrame(frame);clean.onload=atlas.onload=clean.onerror=atlas.onerror=null;reduced.removeEventListener('change',motionChange);document.removeEventListener('visibilitychange',visibility);}};
+  return {ready:preparation,setActive,setPhase,destroy(){cancelAnimationFrame(frame);reduced.removeEventListener('change',motionChange);document.removeEventListener('visibilitychange',visibility);}};
 }

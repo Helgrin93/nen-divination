@@ -3,12 +3,13 @@ import { createWaterArtPass } from './WaterArtPass.js';
 import {composeGlassRepair,glassRepairRegion} from './GlassComposition.js';
 import { waterRegion as region } from './sceneGeometry.js';
 import { divinationEffects, sampleDivination, clamp, smooth } from './divinationTimeline.js';
+import {prepareImage} from '../services/sceneLoading.js';
 const W=1000,H=680;
 const leafOutline='M416 109 Q439 98 462 91 Q507 80 552 95 L588 105 L588 109 L568 110 Q535 128 485 122 Q450 122 416 109 Z';
 const liquidOutline='M364 104 Q500 58 636 104 C638 217 615 334 511 363 C413 365 365 265 364 104Z';
 const frontHighlights='M373 111 Q386 115 402 118 C391 231 416 321 454 344 L435 337 C393 302 374 216 373 111Z M612 114 L631 106 C637 225 610 312 566 341 L554 345 C599 295 616 216 612 114Z';
 const makeCanvas=(w=W,h=H)=>Object.assign(document.createElement('canvas'),{width:w,height:h});
-export function mountWaterScene(scene){
+export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.resolve()}={}){
   const canvas=scene.querySelector('.water-effects'),image=scene.querySelector('.glass-plate');
   if(!canvas||!image)throw new Error('The registered canvas and original scene are required.');
   const ctx=canvas.getContext('2d',{willReadFrequently:true}),reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -17,12 +18,21 @@ export function mountWaterScene(scene){
   let art,original,base,leaf,glassRepair,preparedWing,loaded=false,frame=0,last=0,elapsed=0,holdTime=0,concentration=0;
   let effect='none',holding=false,paused=false,active=true,ready=false,completed=false,fragments=[];
   function crop(source,...rect){const c=makeCanvas(rect[2],rect[3]);c.getContext('2d').drawImage(source,...rect,0,0,c.width,c.height);return c;}
-  function prepare(){
-    if(!active||!loaded)return;
+  function preparePlate(){
     original=makeCanvas();original.getContext('2d').drawImage(image,region.x,region.y,region.width,region.height,0,0,W,H);
     preparedWing=scene.querySelector('.wing-sprite.is-active[data-ready=true]');
     glassRepair=composeGlassRepair(original,preparedWing);
     original.getContext('2d').drawImage(glassRepair,glassRepairRegion.x,glassRepairRegion.y);
+  }
+  function drawInitial(){
+    ctx.resetTransform();ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.setTransform(region.width/W,0,0,region.height/H,region.x,region.y);
+    ctx.drawImage(glassRepair,glassRepairRegion.x,glassRepairRegion.y);
+    canvas.dataset.glassPose=preparedWing?.dataset.pose||'unavailable';
+  }
+  function prepare(){
+    if(!active||!loaded)return;
+    preparePlate();
     base=makeCanvas();const bc=base.getContext('2d',{willReadFrequently:true});bc.drawImage(original,0,0);
     // Infer a precise matte from the green blade in the approved raster.
     const src=bc.getImageData(0,0,W,H).data;
@@ -122,12 +132,15 @@ export function mountWaterScene(scene){
     if(concentration<.001)concentration=0;draw();finishIfNeeded();
     if(!reduced.matches&&(holding||concentration>0||(effect!=='none'&&!completed)))schedule();
   }
-  function setConcentration(value){if(holding===value)return;holding=value;if(value){holdTime=0;concentration=0;elapsed=0;}if(reduced.matches){concentration=0;draw();}else schedule(true);}
+  function setConcentration(value){if(holding===value)return;holding=value;if(value){preload();holdTime=0;concentration=0;elapsed=0;}if(reduced.matches){concentration=0;draw();}else schedule(true);}
   function setEffect(next,{restart=false}={}){
     if(next!=='none'&&!Object.hasOwn(divinationEffects,next))throw new RangeError(`Unknown Nen effect: ${next}`);
     if(effect===next&&!restart)return;
     cancelAnimationFrame(frame);frame=0;effect=next;holding=false;concentration=0;completed=false;paused=false;
     elapsed=reduced.matches&&next!=='none'?divinationEffects[next].duration:0;draw();finishIfNeeded();if(next!=='none'&&!reduced.matches)schedule(true);
+    if(next!=='none')preload().then(ok=>{
+      if(!ok&&active&&effect===next&&!completed){completed=true;scene.dispatchEvent(new CustomEvent('divinationcomplete',{detail:{effect}}));}
+    });
   }
   function pause(){paused=true;cancelAnimationFrame(frame);frame=0;draw();}
   function resume(){if(!paused)return;paused=false;draw();if(effect!=='none'&&!completed)schedule(true);}
@@ -135,12 +148,29 @@ export function mountWaterScene(scene){
   function reset(){cancelAnimationFrame(frame);frame=0;holding=false;concentration=0;effect='none';elapsed=0;holdTime=0;paused=false;completed=false;draw();}
   function motionChange(){if(reduced.matches){cancelAnimationFrame(frame);frame=0;concentration=0;elapsed=effect==='none'?0:divinationEffects[effect].duration;draw();finishIfNeeded();}else if(effect!=='none'&&!completed)schedule(true);}
   function visibility(){if(document.hidden){cancelAnimationFrame(frame);frame=0;holding=false;concentration=0;draw();}else if(!paused&&(concentration>0||(effect!=='none'&&!completed)))schedule(true);}
-  async function load(){
-    try{await Promise.all([image.decode(),...Object.entries({leaves:'leaf-states-atlas.png',overflow:'overflow-atlas.png',clean:'water-surface-clean.png',flex:'leaf-flex-atlas-v3.png',flow:'overflow-ink-atlas-v3.png',residues:'sediment-atlas-v3.png',diffusion:'diffusion-mattes-v3.png'}).map(async([name,path])=>{const asset=new Image();asset.src=import.meta.env.BASE_URL+'assets/divination/'+path;await asset.decode();assets[name]=asset;})]);loaded=true;prepare();}
-    catch(error){if(active){canvas.hidden=true;scene.dataset.waterAsset='missing';scene.dispatchEvent(new CustomEvent('divinationerror',{detail:{message:error.message}}));}}
+  const initialReady=Promise.all([prepareImage(image),poseReady]).then(([ok])=>{
+    if(!ok||!active)return false;preparePlate();drawInitial();return true;
+  });
+  let resourcePromise;
+  function preload(){
+    return resourcePromise??=load();
   }
-  const wingObserver=new MutationObserver(()=>{if(loaded&&scene.querySelector('.wing-sprite.is-active[data-ready=true]')!==preparedWing)prepare();});
+  async function load(){
+    try{
+      if(!await initialReady)throw new Error('Scene unavailable');
+      const results=await Promise.all(Object.entries({leaves:'leaf-states-atlas.png',overflow:'overflow-atlas.png',clean:'water-surface-clean.png',flex:'leaf-flex-atlas-v3.png',flow:'overflow-ink-atlas-v3.png',residues:'sediment-atlas-v3.png',diffusion:'diffusion-mattes-v3.png'}).map(async([name,path])=>{
+        const asset=new Image();asset.fetchPriority='low';asset.src=import.meta.env.BASE_URL+'assets/divination/'+path;
+        const ok=await prepareImage(asset);if(ok)assets[name]=asset;return ok;
+      }));
+      if(!results.every(Boolean))throw new Error('Divination sprites unavailable');
+      loaded=true;prepare();return true;
+    }catch(error){if(active){scene.dataset.waterAsset='missing';scene.dispatchEvent(new CustomEvent('divinationerror',{detail:{message:error.message}}));}return false;}
+  }
+  const wingObserver=new MutationObserver(()=>{
+    if(!original||scene.querySelector('.wing-sprite.is-active[data-ready=true]')===preparedWing)return;
+    if(loaded)prepare();else{preparePlate();drawInitial();}
+  });
   const wingPlate=scene.querySelector('.wing-plate');if(wingPlate)wingObserver.observe(wingPlate,{subtree:true,attributes:true,attributeFilter:['class','data-ready','hidden']});
-  reduced.addEventListener('change',motionChange);document.addEventListener('visibilitychange',visibility);load();
-  return {setEffect,setConcentration,pause,resume,seek,reset,getState:()=>({effect,elapsed,paused,ready,...sampleDivination(effect,elapsed)}),destroy(){active=false;wingObserver.disconnect();cancelAnimationFrame(frame);reduced.removeEventListener('change',motionChange);document.removeEventListener('visibilitychange',visibility);}};
+  reduced.addEventListener('change',motionChange);document.addEventListener('visibilitychange',visibility);if(!deferEffects)preload();
+  return {initialReady,preload,setEffect,setConcentration,pause,resume,seek,reset,getState:()=>({effect,elapsed,paused,ready,...sampleDivination(effect,elapsed)}),destroy(){active=false;wingObserver.disconnect();cancelAnimationFrame(frame);reduced.removeEventListener('change',motionChange);document.removeEventListener('visibilitychange',visibility);}};
 }

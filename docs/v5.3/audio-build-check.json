@@ -1,0 +1,21 @@
+{
+  "isolatedFixtures": true,
+  "productionAudioFiles": [],
+  "tracks": [
+    {
+      "name": "intro-quiz",
+      "file": "intro-quiz-Dbn4DLun.wav",
+      "basePathCorrect": true
+    },
+    {
+      "name": "divination",
+      "file": "divination-BUaUqrgF.wav",
+      "basePathCorrect": true
+    },
+    {
+      "name": "result",
+      "file": "result-DUNVXHPN.wav",
+      "basePathCorrect": true
+    }
+  ]
+}
