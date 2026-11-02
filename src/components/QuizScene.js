@@ -6,6 +6,8 @@ const base = import.meta.env.BASE_URL;
 export function quizScene() {
   return `<div class="quiz-scene-art" aria-hidden="true">
     <div class="water-stage unified-stage" style='--wing-occlusion:${wingOcclusionMask}'>
+      <img class="room-wing room-wing-left" src="${base}assets/room-v5/room-left.png" width="512" height="1024" alt="" decoding="async" fetchpriority="low">
+      <img class="room-wing room-wing-right" src="${base}assets/room-v5/room-right.png" width="512" height="1024" alt="" decoding="async" fetchpriority="low">
       <img class="glass-plate room-backdrop" src="${base}assets/scene-v3/unified-goblet-scene.png" width="1536" height="1024" alt="" fetchpriority="high">
       <img class="rug-border-repair" src="${base}assets/divination/rug-border-repair.png" width="1536" height="1024" alt="">
       <canvas class="hands-motion" width="1536" height="512" hidden></canvas>
@@ -56,6 +58,7 @@ export function setupQuizScene(scene) {
   scene.querySelectorAll('.quiz-scene-art img').forEach(img => {
     img.addEventListener('error', () => {
       img.hidden = true;
+      if(img.matches('.room-wing'))return;
       ready.delete(img);
       if(img.matches('.wing-sprite')){
         setExpression(requested);

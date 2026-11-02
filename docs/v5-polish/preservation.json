@@ -1,0 +1,275 @@
+{
+  "layoutUnchanged": true,
+  "centralPixelComparisons": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": "intro",
+      "compared": 1543308,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": "quiz",
+      "compared": 1543308,
+      "changed": 182,
+      "changedOverOne": 0,
+      "maxDelta": 1
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "state": "last-answer",
+      "compared": 1543308,
+      "changed": 182,
+      "changedOverOne": 0,
+      "maxDelta": 1
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "intro",
+      "compared": 1044168,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "quiz",
+      "compared": 1044168,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "state": "last-answer",
+      "compared": 1044168,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "intro",
+      "compared": 170720,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "quiz",
+      "compared": 170720,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "last-answer",
+      "compared": 170720,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "state": "intro",
+      "compared": 127193,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "state": "quiz",
+      "compared": 127193,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "state": "last-answer",
+      "compared": 127193,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "state": "intro",
+      "compared": 196800,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "state": "quiz",
+      "compared": 196800,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    },
+    {
+      "viewport": {
+        "width": 412,
+        "height": 915
+      },
+      "state": "last-answer",
+      "compared": 196800,
+      "changed": 0,
+      "changedOverOne": 0,
+      "maxDelta": 0
+    }
+  ],
+  "originalAssets": [
+    {
+      "file": "public/assets/divination/art-v3-manifest.json",
+      "unchanged": true,
+      "sha256": "426a8a7b3826033afc26ba1061697c1c0aaceecfc55d958b0a421de0a0e9d287"
+    },
+    {
+      "file": "public/assets/divination/diffusion-mattes-v3.png",
+      "unchanged": true,
+      "sha256": "39271051674a37c493fb49427ba1f69d0961fb4ba72fb2a8530878691d7269b3"
+    },
+    {
+      "file": "public/assets/divination/hands-poses.png",
+      "unchanged": true,
+      "sha256": "f0bdf7c6061c0ea8f9c86007eac97c01626896bd8d564cd0de3448842becc68f"
+    },
+    {
+      "file": "public/assets/divination/leaf-flex-atlas-v3.png",
+      "unchanged": true,
+      "sha256": "8e6713ad829fa3dccb0056e504a8dbfb52848c8c06c6db6ddd1d98febdc950ea"
+    },
+    {
+      "file": "public/assets/divination/leaf-states-atlas.png",
+      "unchanged": true,
+      "sha256": "fed996f69fdbe2918084c2e98283b7c3bc6de38c672f54ace9963b519fc2945f"
+    },
+    {
+      "file": "public/assets/divination/overflow-atlas.png",
+      "unchanged": true,
+      "sha256": "44d4854a0d6bcc1fc38272e437ad549f36650fec564c30fed2d5e733af0d7838"
+    },
+    {
+      "file": "public/assets/divination/overflow-ink-atlas-v3.png",
+      "unchanged": true,
+      "sha256": "cf7ee0fef4f18220495390e8c6f66d680f6283ca711db28e8ad4a3a90181efdf"
+    },
+    {
+      "file": "public/assets/divination/rug-border-repair.png",
+      "unchanged": true,
+      "sha256": "0eaa4a53e7c8a01dddcd8401feea135baaa70fd00462f337396e13a2f95eea07"
+    },
+    {
+      "file": "public/assets/divination/sediment-atlas-v3.png",
+      "unchanged": true,
+      "sha256": "76e75dbbf7714a8fe26b576705b34b99bca4af2f0181c49d6d65c24b8e95682f"
+    },
+    {
+      "file": "public/assets/divination/table-clean.png",
+      "unchanged": true,
+      "sha256": "eda32d7612dc8ea6bfaf877e08a5cc0512c4c2ee4de52a30ea9f4ae22aafc24a"
+    },
+    {
+      "file": "public/assets/divination/water-clean.png",
+      "unchanged": true,
+      "sha256": "e1b3cb45c17c57e633ae918948683862b0c8c8b2790d9e70647977370feccd7d"
+    },
+    {
+      "file": "public/assets/divination/water-surface-clean.png",
+      "unchanged": true,
+      "sha256": "5390faadb481d06a61f14d4b31e1d35f83258ce5cebc4f58ae00eb8adbc6ec6a"
+    },
+    {
+      "file": "public/assets/scene-v3/background-source.png",
+      "unchanged": true,
+      "sha256": "7f19b38ef21ce716d0ddc6a6bc1e6cc5747c702d632c2f602e60b3c08572e11b"
+    },
+    {
+      "file": "public/assets/scene-v3/composition-source.png",
+      "unchanged": true,
+      "sha256": "29fd8a614839ba847cdada9563d2c9bdfb75ef77758bd3e96326cff40647d46a"
+    },
+    {
+      "file": "public/assets/scene-v3/unified-goblet-scene.png",
+      "unchanged": true,
+      "sha256": "77beed31fd9634c0722c8ea16a256f29de703aff60d2daa60b0867f811581c61"
+    },
+    {
+      "file": "public/assets/scene-v3/wall-rug.png",
+      "unchanged": true,
+      "sha256": "6b655d68681e94c7e14c61905c0099eb7d268be38c11be0028c20a865e89073e"
+    },
+    {
+      "file": "public/assets/scene-v3/wing-eyes-closed.png",
+      "unchanged": true,
+      "sha256": "7a772d3bd1a57d2451c591a60af8f60c53a1c3f758c8a65649170d97ad14e49a"
+    },
+    {
+      "file": "public/assets/scene-v3/wing-gesture.png",
+      "unchanged": true,
+      "sha256": "c1e0d244a71f4e1061f3c0765386148822e46149599e38608500b24a9ba023a8"
+    },
+    {
+      "file": "public/assets/scene-v3/wing-neutral.png",
+      "unchanged": true,
+      "sha256": "07a77896c6b7eefedcc0b9a1bfdc1ecc6cdc00987ae38594a14a44b4f707247d"
+    },
+    {
+      "file": "public/assets/scene-v3/wing-smile.png",
+      "unchanged": true,
+      "sha256": "a23ea4a1826e6474913b6318f21b45ce7e4995801d102c77eb0618fe4cbda786"
+    }
+  ],
+  "originalAssetsUnchanged": true,
+  "centralPixelsUnchanged": false,
+  "centralPixelsWithinOneLevel": true
+}

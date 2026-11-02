@@ -8,3 +8,8 @@ playwright-report/
 !.env.example
 
 docs/v4-microfix/
+
+# Local visual references and full-resolution review captures.
+/NEN_DIVINATION_V5_CODEX/
+/docs/v5-polish/before/
+/docs/v5-polish/after/

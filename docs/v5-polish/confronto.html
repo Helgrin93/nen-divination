@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nen Divination · Revisione stanza</title>
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#171c1e;color:#f3eee4;font:16px/1.5 system-ui,sans-serif;padding:24px}main{max-width:1440px;margin:auto}h1{font:400 28px Georgia,serif;margin:0 0 8px}p{margin:8px 0 18px;color:#d3cec1}nav{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:20px 0}label{display:grid;gap:5px}select{font:inherit;padding:9px;background:#25352f;color:inherit;border:1px solid #889b86;border-radius:4px}a{color:#e0ce92}.comparison{position:relative;background:#ead8b9;max-width:1000px;margin:auto}.comparison img{display:block;width:100%;height:auto}.comparison #after{position:absolute;inset:0;height:100%;clip-path:inset(0 0 0 50%)}.divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:white;pointer-events:none;filter:drop-shadow(0 0 2px black)}.slider{display:flex;gap:12px;align-items:center;margin:15px auto;max-width:1000px}.slider input{width:100%;accent-color:#91b599;min-height:36px}small{color:#b9bdaf}.links{display:flex;gap:24px;flex-wrap:wrap;margin-top:16px}
+</style>
+<main>
+  <h1>Estensione laterale della stanza</h1>
+  <p>Confronto della stessa scena: centro originale, ali ambientali aggiunte. Trascina il cursore per confrontare.</p>
+  <nav>
+    <label>Schermo<select id="device"><option value="desktop-wide">Desktop · 1920 × 1080</option><option value="desktop">Desktop · 1440 × 900</option><option value="iphone">iPhone · 390 × 844</option><option value="iphone-small">iPhone · 375 × 667</option><option value="android">Android · 412 × 915</option><option value="desktop-reference">Formato del riferimento · 1920 × 912</option></select></label>
+    <label>Scena<select id="state"><option value="intro">Introduzione</option><option value="quiz">Prima domanda</option><option value="last-answer">Ultima opzione raggiunta</option><option value="expression-1">Seconda domanda</option><option value="expression-2">Terza domanda</option><option value="pre-concentration">Prima della divinazione</option><option value="concentration">Concentrazione</option></select></label>
+    <a href="../../">Apri l’app locale</a>
+  </nav>
+  <div class="comparison"><img id="before" alt="Scena precedente con margini beige"><img id="after" alt="Scena con estensione laterale"><span class="divider"></span></div>
+  <label class="slider">Prima<input id="split" aria-label="Posizione del confronto prima e dopo" type="range" min="0" max="100" value="50">Dopo</label>
+  <small id="note">Screenshot ottenuti dai browser locali. Le dimensioni indicate sono viewport CSS; non si tratta di una prova su dispositivi fisici.</small>
+  <div class="links"><a id="original" target="_blank">Screenshot prima</a><a id="final" target="_blank">Screenshot dopo</a><a href="preservation.json">Confronto pixel e hash degli originali</a><a href="../../V5_FINAL_POLISH_REPORT.md">Report</a></div>
+</main>
+<script>
+const device=document.querySelector('#device'),state=document.querySelector('#state');
+function update(){
+  const reference=device.value==='desktop-reference';if(reference)state.value='intro';state.disabled=reference;
+  for(const phase of ['before','after'])document.getElementById(phase).src=`${phase}/${device.value}-${state.value}.png`;
+  document.querySelector('#original').href=`before/${device.value}-${state.value}.png`;
+  document.querySelector('#final').href=`after/${device.value}-${state.value}.png`;
+  document.querySelector('#note').textContent=reference?'Formato del riferimento: confronto nello stesso istante con ali disattivate/attivate.':'Screenshot ottenuti dai browser locali. Le dimensioni indicate sono viewport CSS; non si tratta di una prova su dispositivi fisici.';
+}
+document.querySelector('#split').addEventListener('input',e=>{document.querySelector('#after').style.clipPath=`inset(0 0 0 ${e.target.value}%)`;document.querySelector('.divider').style.left=e.target.value+'%';});
+device.addEventListener('change',update);state.addEventListener('change',update);update();
+</script>
+</html>
