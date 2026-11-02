@@ -15,14 +15,14 @@ export function sampleDivination(effect,time){
   return {duration:spec.duration,progress,stage,rise:smooth((progress-.08)/.32),colour:smooth((progress-.10)/.72),travel:smooth((progress-.10)/.82),wither:clamp((progress-.10)/.66)};
 }
 export const wingDivination={
-  enhancement:{it:'Guarda il bordo: il volume dell’acqua sta aumentando.',en:'Watch the rim. The volume of water is increasing.'},
-  emission:{it:'Il colore si diffonde nell’acqua. È una prova di Emissione.',en:'The colour is spreading through the water. This is Emission.'},
-  transmutation:{it:'È diventata dolce. Eppure l’aspetto è lo stesso.',en:'It tastes sweet. Yet it looks the same.'},
-  conjuration:{it:'Vedi quei piccoli residui? Si stanno formando dentro l’acqua.',en:'See those tiny specks? They are forming inside the water.'},
-  manipulation:{it:'La foglia si muove e ruota: la tua aura ne guida il movimento.',en:'The leaf is moving and turning. Your aura is guiding it.'},
-  specialization:{it:'La foglia sta appassendo. Questa reazione indica la Specializzazione.',en:'The leaf is withering. This reaction indicates Specialization.'},
+  enhancement:{"it":"Guarda… Il livello dell'acqua continua a salire.","en":"Look… The water level keeps rising."},
+  emission:{"it":"Hai visto? L'acqua sta assumendo un altro colore.","en":"Did you see that? The water is changing color."},
+  transmutation:{"it":"Il sapore è cambiato, l'acqua è diventata dolce.","en":"The taste has changed. The water has become sweet."},
+  conjuration:{"it":"Guarda attentamente… Sta comparendo qualcosa nell'acqua.","en":"Look closely… Something is appearing in the water."},
+  manipulation:{"it":"Osserva la foglia. Sta reagendo alla tua aura.","en":"Watch the leaf. It's reacting to your aura."},
+  specialization:{"it":"La foglia sta appassendo… Una reazione davvero insolita.","en":"The leaf is withering… A truly unusual reaction."},
 };
 export const wingTransmutationIntro={
-  it:'L’acqua sembra la stessa. Aspetta… osserviamo con calma.',
-  en:'The water looks the same. Wait… let us watch carefully.',
+  "it": "L'acqua sembra la stessa, eppure…",
+  "en": "The water looks the same, and yet…"
 };

@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {finishDialogue,finishRevelation} from './helpers/dialogue.js';
 
-test('short comments are separate, last three seconds and preserve decoded Wing; important dialogue waits',async({page})=>{
+test('short comments last two seconds and preserve decoded Wing; important dialogue waits',async({page})=>{
   await page.goto('/');await page.locator('.wing-sprite[data-ready=true]').first().waitFor();
   await page.locator('[data-action=begin]').click();
   const seen=[];
@@ -15,7 +15,7 @@ test('short comments are separate, last three seconds and preserve decoded Wing;
       await expect(interlude.locator('button')).toHaveCount(0);await expect(page.locator('.question-title,.answer')).toHaveCount(0);
       seen.push(await interlude.getAttribute('data-reaction'));
       await expect(page.locator('.wing-sprite.is-active')).toHaveAttribute('data-ready','true');
-      await page.waitForTimeout(1800);await expect(interlude).toBeVisible();
+      await page.waitForTimeout(700);await expect(interlude).toBeVisible();
       await page.getByRole('button',{name:'English',exact:true}).click();
       await expect(interlude).toHaveCount(0,{timeout:2200});
       await page.getByRole('button',{name:'Italiano',exact:true}).click();

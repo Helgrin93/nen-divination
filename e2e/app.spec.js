@@ -10,7 +10,7 @@ async function toConcentration(page){
     if(await page.locator('.hold-button').count())break;
     await page.locator('.answer').first().click();
     await page.getByRole('button',{name:'Continua',exact:true}).click();
-    if(n===3){await expect(page.locator('.interlude h2')).toHaveText(/^(Oh, interessante…|Capisco…|Vediamo…|Mh, curioso…|Molto bene\.)$/);}
+    if(n===3){await expect(page.locator('.interlude h2')).toHaveText(/^(Oh, interessante…|Mh, capisco…|Una risposta particolare…|Mh, curioso…|Molto bene\.)$/);}
   }
   await finishDialogue(page);await expect(page.locator('.hold-button')).toBeVisible();
 }

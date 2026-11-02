@@ -1,5 +1,5 @@
 import { describe,it,expect } from 'vitest';
-import { createAttempt,selectAnswer,advance,goBack,reveal } from '../game/stateMachine.js';
+import { createAttempt,selectAnswer,advance,goBack,beginConcentration,reveal } from '../game/stateMachine.js';
 import { seededRandom } from '../game/questionPicker.js';
 import { preferredLanguage,translations } from '../data/translations.js';
 
@@ -28,7 +28,7 @@ describe('Attempt navigation and bonus flow',()=>{
     const lengths=new Set();
     for(let seed=0;seed<300;seed++){
       const s=play(seed);lengths.add(s.questions.length);
-      expect(s.phase).toBe('concentration');expect(s.questions.length).toBeLessThanOrEqual(9);
+      expect(s.phase).toBe('divinationIntro');expect(s.questions.length).toBeLessThanOrEqual(9);
       expect(new Set(s.questions.map(q=>q.id)).size).toBe(s.questions.length);
       expect(s.result.needsBonus).toBe(false);
     }
@@ -43,7 +43,9 @@ describe('Attempt navigation and bonus flow',()=>{
   });
   it('hold only reveals a computed result, cannot trigger twice or change the winner',()=>{
     const empty=createAttempt(seededRandom(4));empty.phase='concentration';expect(reveal(empty)).toBe(false);
-    const s=play(91),result=structuredClone(s.result);expect(reveal(s)).toBe(true);expect(reveal(s)).toBe(false);expect(s.result).toEqual(result);
+    const s=play(91),result=structuredClone(s.result);
+    expect(reveal(s)).toBe(false);expect(beginConcentration(s)).toBe(true);expect(beginConcentration(s)).toBe(false);
+    expect(reveal(s)).toBe(true);expect(reveal(s)).toBe(false);expect(s.result).toEqual(result);
   });
   it('a replay creates a clean attempt',()=>{
     const random=seededRandom(15),a=createAttempt(random),b=createAttempt(random);

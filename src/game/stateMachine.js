@@ -45,7 +45,7 @@ export function advance(state) {
   } else {
     state.questions = used;
     state.result = result;
-    state.phase = 'concentration';
+    state.phase = 'divinationIntro';
   }
 }
 
@@ -53,6 +53,12 @@ export function goBack(state) {
   if (!['quiz', 'bonus'].includes(state.phase) || state.pause || state.index === 0) return;
   state.index--;
   state.phase = state.index < 7 ? 'quiz' : 'bonus';
+}
+
+export function beginConcentration(state) {
+  if (state.phase !== 'divinationIntro' || !state.result) return false;
+  state.phase = 'concentration';
+  return true;
 }
 
 export function reveal(state) {

@@ -32,7 +32,7 @@ for(const type of Object.keys(divinationEffects))test(`${type}: starts, pauses, 
   expect(registration).toEqual({registered:true,outside:0});
   await page.locator('[data-language]').selectOption('en');
   if(type==='transmutation')await expect(page.locator('[data-dialogue]')).toContainText('sweet');
-  if(type==='specialization'){await expect(page.locator('[data-dialogue]')).not.toContainText('Neferpitou');await expect(page.locator('[data-dialogue]')).toContainText('Specialization');}
+  if(type==='specialization'){await expect(page.locator('[data-dialogue]')).not.toContainText('Neferpitou');await expect(page.locator('[data-dialogue]')).toHaveText('The leaf is withering… A truly unusual reaction.');}
   await page.locator('[data-view]').selectOption('result');await page.clock.fastForward(1500);
   expect(await canvas.evaluate((c,final)=>c.toDataURL()===final,final)).toBe(true);
   await page.locator('[data-play]').click();await page.clock.runFor(100);

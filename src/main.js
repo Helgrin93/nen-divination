@@ -5,10 +5,10 @@ import './styles/result.css';
 import './styles/unified-scene.css';
 import { translations, preferredLanguage } from './data/translations.js';
 import { nenTypes } from './data/nenTypes.js';
-import { createAttempt, selectAnswer, advance, goBack, reveal } from './game/stateMachine.js';
+import { createAttempt, selectAnswer, advance, goBack, beginConcentration, reveal } from './game/stateMachine.js';
 import { quizScene, setupQuizScene } from './components/QuizScene.js';
 import { mountWaterScene } from './components/WaterScene.js';
-import { wingDivination,wingTransmutationIntro } from './components/divinationTimeline.js';
+import {SHORT_COMMENT_MS,revelationLine} from './game/wingDialogue.js';
 import { mountHandsMotion } from './components/HandsMotion.js';
 import { mountHold } from './components/HoldInteraction.js';
 import { resultView } from './components/ResultView.js';
@@ -24,6 +24,7 @@ let lang=preferredLanguage(storage,navigator.language);
 let state=createAttempt(), cleanupHold=null, effectTimer=null, exporting=false, holdActive=false;
 let reactions=createWingReactions();
 let dialogue=null, dialogueTimer=null, dialogueDeadline=0;
+let revelationFrame=0;
 const shownReactions=new Set();
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelector('#app').innerHTML=`
@@ -37,10 +38,9 @@ const setExpression=setupQuizScene(scene);
 const waterScene=mountWaterScene(scene);
 const handsMotion=mountHandsMotion(scene);
 scene.addEventListener('divinationstage',({detail})=>{
-  if(state.phase!=='waterEffect'||detail.effect!=='transmutation')return;
-  const sweet=detail.stage==='sweet',line=content.querySelector('.revelation-card p');
-  if(line)line.textContent=(sweet?wingDivination.transmutation:wingTransmutationIntro)[lang];
-  setExpression(sweet?'smile':'curious');
+  if(state.phase!=='waterEffect')return;
+  syncRevelation();
+  if(detail.effect==='transmutation')setExpression(detail.stage==='sweet'?'smile':'curious');
 });
 scene.addEventListener('divinationcomplete',()=>{
   if(state.phase!=='waterEffect')return;
@@ -62,12 +62,23 @@ function translate(){
   if(state.result && ['waterEffect','result'].includes(state.phase) && dialogue?.kind!=='revealed'){
     scene.querySelector('.scene-effect-caption').textContent=state.phase==='result'?nenTypes[state.result.primary].effect[lang]:t().revealing;
   }
-  if(holdActive){const label=document.querySelector('.hold-button span');if(label)label.textContent=t().holding;}
+  if(holdActive){const label=document.querySelector('.hold-button span');if(label)label.textContent=t().hold;}
   const progress=document.querySelector('.hold-progress');if(progress)progress.setAttribute('aria-label',t().holding);
 }
 function focusHeading(){
   const heading=content.querySelector('h1,h2');
   if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+  else if(state.phase==='concentration')scene.querySelector('.hold-button')?.focus({preventScroll:true});
+}
+function syncRevelation(){
+  const line=content.querySelector('.revelation-card p');
+  if(!line||!state.result||dialogue?.kind==='revealed')return;
+  const text=revelationLine(state.result.primary,waterScene.getState())?.[lang]||'';
+  if(line.textContent!==text)line.textContent=text;
+}
+function followRevelation(){
+  if(state.phase!=='waterEffect'||dialogue?.kind==='revealed')return;
+  syncRevelation();revelationFrame=requestAnimationFrame(followRevelation);
 }
 function bringContentIntoView(){
   if(['intro','quiz','bonus'].includes(state.phase))return;
@@ -79,12 +90,14 @@ function bringContentIntoView(){
 }
 function render({focus=false}={}){
   clearTimeout(dialogueTimer);
+  cancelAnimationFrame(revelationFrame);
   cleanupHold?.();cleanupHold=null;holdActive=false;
   const tr=t(), phase=state.phase;
-  handsMotion.setPhase(phase);
+  const visualPhase=phase==='divinationIntro'?'concentration':phase;
+  handsMotion.setPhase(visualPhase);
   handsMotion.setActive(false);waterScene.setConcentration(false);
-  document.body.dataset.phase=phase;
-  scene.dataset.phase=phase;scene.classList.remove('is-holding');
+  document.body.dataset.phase=visualPhase;
+  scene.dataset.phase=visualPhase;scene.classList.remove('is-holding');
   if(!['waterEffect','result'].includes(phase)){scene.dataset.effect='none';scene.querySelector('.scene-effect-caption').textContent='';}
   // All interactive phases share the same scene, canvas and camera.
   const contentParent=phase==='result'?document.querySelector('#experience'):scene;
@@ -109,25 +122,29 @@ function render({focus=false}={}){
       <h1 class="question-title">${q[lang]}</h1></div></div>
       <div class="answers">${q.options.map((o,i)=>`<button class="answer ${state.answers[q.id]===o.id?'is-selected':''}" data-option="${o.id}" aria-pressed="${state.answers[q.id]===o.id}"><span class="answer-letter" aria-hidden="true">${'ABCD'[i]}</span><span>${o[lang]}</span></button>`).join('')}</div>
       <div class="question-navigation"><button class="text-button" data-action="back" ${state.index===0?'disabled':''}>${icon('back')}${tr.back}</button><button class="button next-button" data-action="next" ${!state.answers[q.id]?'disabled':''}>${tr.next}${icon('arrow')}</button></div></section>`;
+  }else if(phase==='divinationIntro'){
+    setExpression('neutral');
+    content.innerHTML=`<section class="interlude" data-dialogue="important" data-kind="divinationIntro"><div class="speech-bubble" role="status"><span class="speaker">WING</span><h2>${tr.divinationIntro}</h2></div><button class="button primary" data-action="resume">${tr.next}${icon('arrow')}</button></section>`;
   }else if(phase==='concentration'){
     setExpression('neutral');
-    content.innerHTML=`<section class="focus-card"><div class="speech-bubble"><div class="bubble-scroll" tabindex="0" role="region" aria-label="WING"><span class="speaker">WING</span><h1 data-i18n="focusTitle"></h1><p data-i18n="focus"></p></div></div></section>`;
+    content.innerHTML='';
     scene.querySelector('.scene-hold-slot').innerHTML=`<button class="hold-button" aria-describedby="hold-description"><span data-i18n="hold"></span><small>4.5 s</small></button><div class="hold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><button class="text-button accessible-reveal" data-action="reveal" data-i18n="accessible"></button><span id="hold-description" class="sr-only" data-i18n="holdHelp"></span><span class="hold-announcement sr-only" aria-live="polite"></span>`;
     const button=scene.querySelector('.hold-button');
     cleanupHold=mountHold({button,progress:scene.querySelector('.hold-progress'),onStart:()=>{
-      holdActive=true;handsMotion.setActive(true);waterScene.setConcentration(true);scene.classList.add('is-holding');button.querySelector('span').textContent=t().holding;scene.querySelector('.hold-announcement').textContent=t().holding;
+      holdActive=true;handsMotion.setActive(true);waterScene.setConcentration(true);scene.classList.add('is-holding');button.querySelector('span').textContent=t().hold;scene.querySelector('.hold-announcement').textContent=t().holding;
     },onReset:()=>{holdActive=false;handsMotion.setActive(false);waterScene.setConcentration(false);scene.classList.remove('is-holding');button.querySelector('span').textContent=t().hold;scene.querySelector('.hold-announcement').textContent=t().reset;},onComplete:completeHold});
   }else if(phase==='waterEffect'){
     const tasting=state.result.primary==='transmutation',sweet=waterScene.getState().stage==='sweet';
     setExpression(tasting&&sweet?'smile':'curious');
-    const dialogue=tasting&&!sweet?wingTransmutationIntro:wingDivination[state.result.primary];
-    content.innerHTML=`<section class="revelation-card" aria-live="polite"><div class="speech-bubble"><div class="bubble-scroll" tabindex="0" role="region" aria-label="WING"><span class="speaker">WING</span><h1>${tr.revealing}</h1><p>${dialogue[lang]}</p></div></div></section>`;
+    const line=revelationLine(state.result.primary,waterScene.getState());
+    content.innerHTML=`<section class="revelation-card" aria-live="polite"><div class="speech-bubble"><div class="bubble-scroll" tabindex="0" role="region" aria-label="WING"><span class="speaker">WING</span><h1>${tr.revealing}</h1><p>${line?.[lang]||''}</p></div></div></section>`;
   }else if(phase==='result'){
     setExpression('smile');
     content.innerHTML=resultView(state.result,lang,tr);
     setupCharacterCards(content,tr);
   }
   translate();
+  if(phase==='waterEffect'&&dialogue?.kind!=='revealed')followRevelation();
   if(focus)focusHeading();
 }
 function completeHold(){
@@ -161,22 +178,25 @@ document.addEventListener('click',async e=>{
   if(!action)return;
   if(action==='begin'){state.phase='quiz';render({focus:true});bringContentIntoView();}
   if(action==='resume'&&dialogue?.kind!=='short'){
+    if(state.phase==='divinationIntro'){
+      beginConcentration(state);render({focus:true});return;
+    }
     const finished=dialogue?.kind==='revealed';dialogue=null;state.pause=false;
     if(finished){state.phase='result';render({focus:true});window.scrollTo({top:0,behavior:'instant'});}
     else{render({focus:true});bringContentIntoView();}
   }
   if(action==='next'){
     const previous=state.index;advance(state);
-    if(state.phase==='concentration')dialogue={kind:'focus',expression:'neutral'};
+    if(state.phase==='divinationIntro')dialogue=null;
     else if(state.phase==='bonus'&&state.index>previous)dialogue={kind:'bonus'+(state.index+1),expression:'thinking'};
     else if(state.index>previous){
       const reaction=reactions.forState(state),key=`${state.index}-${state.questions[state.index].id}`;
       if(reaction&&!shownReactions.has(key)){
-        shownReactions.add(key);dialogue={kind:'short',reaction,expression:reaction.expression};dialogueDeadline=performance.now()+3000;
+        shownReactions.add(key);dialogue={kind:'short',reaction,expression:reaction.expression};dialogueDeadline=performance.now()+SHORT_COMMENT_MS;
       }
     }
     render({focus:true});
-    if(state.phase==='concentration')scene.scrollIntoView({block:'start',behavior:reducedMotion.matches?'instant':'smooth'});
+    if(['divinationIntro','concentration'].includes(state.phase))scene.scrollIntoView({block:'start',behavior:reducedMotion.matches?'instant':'smooth'});
     else bringContentIntoView();
   }
   if(action==='back'){goBack(state);render({focus:true});bringContentIntoView();}
