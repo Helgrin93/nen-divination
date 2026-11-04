@@ -11,8 +11,11 @@
     "test:simulation": "node scripts/simulate.mjs",
     "test:e2e": "playwright test",
     "test:build": "node scripts/verify-build.mjs",
+    "test:audio": "node scripts/verify-soundtrack.mjs",
     "assets:scene": "node scripts/prepare-scene-preview.mjs",
     "assets:characters": "node scripts/sync-characters.mjs",
+    "assets:audio": "node scripts/render-covers.mjs",
+    "assets:audio:originals": "node scripts/compose-soundtrack.mjs",
     "build:review": "vite build --mode local-review --outDir .verification/v2/dist"
   },
   "engines": {

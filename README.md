@@ -64,6 +64,28 @@ node scripts/audit-character-images.mjs
 
 Lo script di audit non salva nuovi file immagine. Nessun ritratto canonico è generato con AI. Le pose Wing preesistenti hanno provenienza non documentata; la V4 le preserva e non ne attribuisce diritti inesistenti. Sorgenti e prompt degli effetti restano in `assets/scene/`.
 
+## Colonna sonora
+
+Sono inclusi tre brani:
+**The World of Adventurers** al pianoforte per apertura e domande e il tema iniziale
+di **Legend of the Martial Artist** al flauto per la divinazione contemplativa.
+**Hyōri Ittai**, ending degli Yuzu, accompagna la scheda finale con il primo
+minuto del video scelto dall'utente, elaborato per rimuovere la voce.
+Le prime due tracce sono cover campionate. Il finale conserva la registrazione
+strumentale del riferimento: non è una cover e può contenere residui vocali
+o artefatti della separazione.
+
+Con Vite avviato, [lo studio musicale](http://localhost:5173/review/audio.html)
+consente di ascoltare, confrontare e scaricare i tre brani senza completare il quiz.
+Gli MP3 occupano circa 3,30 MB complessivi e rispettano le fasi, il volume e
+il silenziamento già gestiti dall’app. La pagina d’ascolto rimane fuori dalla build.
+Partiture, rigenerazione e provenienza: [documentazione audio](src/assets/audio/README.md).
+
+Dopo `npm.cmd run build`, `npm.cmd run test:audio` verifica i tre file effettivi
+sotto `/nen-divination/`: decodifica, livelli, fasi, loop e mute/riavvio in Chromium.
+Per i controlli dell’ascolto: `npx.cmd playwright test e2e/audio-review.spec.js --project=desktop --project=small-mobile`.
+La prova audio su Safari/iPhone fisico resta da svolgere.
+
 ## Test e catture
 
 ```powershell

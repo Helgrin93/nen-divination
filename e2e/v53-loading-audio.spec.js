@@ -85,6 +85,7 @@ test('a stalled critical image times out, stays hidden if it arrives later, and 
 });
 
 test('absent audio requests no media and the 44px header control fits beside IT/EN',async({page})=>{
+ await configuredMusic(page,{missing:true});
  const media=[];page.on('request',r=>{if(r.resourceType()==='media')media.push(r.url());});
  await page.goto('/');await ready(page);
  const audio=page.locator('[data-audio]');await expect(audio).toHaveAttribute('data-audio-state','unavailable');

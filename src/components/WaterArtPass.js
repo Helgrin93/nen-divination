@@ -131,7 +131,7 @@ export function createWaterArtPass({original,base,leaf,assets}){
   return {index,next,mix,x:(side?655:343)-artData.overflow.pivot[0]+a.x+(b.x-a.x)*mix,y:(side?86:81)-artData.overflow.pivot[1]+a.y+(b.y-a.y)*mix};
  }
  function enhancement(ctx,p){
-  if(!p)return {surfaceY:115,droplets:0};clean(ctx);
+  if(!p)return {surfaceY:105,droplets:0};clean(ctx);
   const water=risingWater(ctx,p);
   ctx.save();ctx.beginPath();ctx.ellipse(500,water.surfaceY,145,34,0,0,Math.PI*2);ctx.clip();arc(ctx,491,water.surfaceY,(p-.04)/.33,.28);ctx.restore();
   originalLeaf(ctx,500,water.leafY);water.restoreRim();

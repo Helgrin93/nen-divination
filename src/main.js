@@ -146,7 +146,7 @@ function render({focus=false}={}){
   }else if(phase==='concentration'){
     setExpression('neutral');
     content.innerHTML='';
-    scene.querySelector('.scene-hold-slot').innerHTML=`<button class="hold-button" aria-describedby="hold-description"><span data-i18n="hold"></span><small>4.5 s</small></button><div class="hold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><button class="text-button accessible-reveal" data-action="reveal" data-i18n="accessible"></button><span id="hold-description" class="sr-only" data-i18n="holdHelp"></span><span class="hold-announcement sr-only" aria-live="polite"></span>`;
+    scene.querySelector('.scene-hold-slot').innerHTML=`<button class="hold-button" aria-describedby="hold-description"><span data-i18n="hold"></span></button><div class="hold-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><button class="text-button accessible-reveal" data-action="reveal" data-i18n="accessible"></button><span id="hold-description" class="sr-only" data-i18n="holdHelp"></span><span class="hold-announcement sr-only" aria-live="polite"></span>`;
     const button=scene.querySelector('.hold-button');
     cleanupHold=mountHold({button,progress:scene.querySelector('.hold-progress'),onStart:()=>{
       music.setPhase('divination',{gesture:true});

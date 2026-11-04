@@ -15,7 +15,7 @@ export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.reso
   const ctx=canvas.getContext('2d',{willReadFrequently:true}),reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let leafMask=new Path2D(leafOutline);
   const interior=new Path2D(liquidOutline),highlights=new Path2D(frontHighlights),assets={};
-  let art,original,base,leaf,glassRepair,preparedWing,loaded=false,frame=0,last=0,elapsed=0,holdTime=0,concentration=0;
+  let art,original,base,leaf,glassRepair,waterBody,preparedWing,loaded=false,frame=0,last=0,elapsed=0,holdTime=0,concentration=0;
   let effect='none',holding=false,paused=false,active=true,ready=false,completed=false,fragments=[];
   function crop(source,...rect){const c=makeCanvas(rect[2],rect[3]);c.getContext('2d').drawImage(source,...rect,0,0,c.width,c.height);return c;}
   function preparePlate(){
@@ -23,11 +23,29 @@ export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.reso
     preparedWing=scene.querySelector('.wing-sprite.is-active[data-ready=true]');
     glassRepair=composeGlassRepair(original,preparedWing);
     original.getContext('2d').drawImage(glassRepair,glassRepairRegion.x,glassRepairRegion.y);
+    // A restrained cool transmission tint makes the liquid distinguishable
+    // from the warm table. Stay below the existing surface and inside the
+    // bowl; white glass reflections keep their original brightness.
+    waterBody=makeCanvas();const wc=waterBody.getContext('2d');
+    wc.beginPath();wc.moveTo(366,111);wc.quadraticCurveTo(500,155,634,111);
+    wc.bezierCurveTo(634,217,612,334,511,363);wc.bezierCurveTo(414,365,366,265,366,111);wc.closePath();wc.clip();
+    const tint=wc.createLinearGradient(0,111,0,365);
+    tint.addColorStop(0,'rgba(109,181,198,.15)');
+    tint.addColorStop(.45,'rgba(124,187,199,.11)');
+    tint.addColorStop(1,'rgba(94,164,185,.19)');
+    wc.fillStyle=tint;wc.fillRect(364,111,272,254);
+    const pixels=wc.getImageData(0,0,W,H),source=original.getContext('2d').getImageData(0,0,W,H).data;
+    for(let i=0;i<pixels.data.length;i+=4){
+      const light=Math.min(source[i],source[i+1],source[i+2]);
+      pixels.data[i+3]*=1-smooth((light-185)/55);
+    }
+    wc.putImageData(pixels,0,0);original.getContext('2d').drawImage(waterBody,0,0);
   }
   function drawInitial(){
     ctx.resetTransform();ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.setTransform(region.width/W,0,0,region.height/H,region.x,region.y);
     ctx.drawImage(glassRepair,glassRepairRegion.x,glassRepairRegion.y);
+    ctx.drawImage(waterBody,0,0);
     canvas.dataset.glassPose=preparedWing?.dataset.pose||'unavailable';
   }
   function prepare(){
@@ -59,7 +77,7 @@ export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.reso
     if((holding||(effect!=='none'&&!completed))&&!reduced.matches)schedule(true);else finishIfNeeded();
   }
   function sprite(source,x,y,w,h,alpha=1){if(alpha<=0)return;ctx.save();ctx.globalAlpha=clamp(alpha);ctx.drawImage(source,x,y,w,h);ctx.restore();}
-  function atlas(rect,dest,alpha=1,source=assets.overflow){if(alpha<=0)return;ctx.save();ctx.globalAlpha=clamp(alpha);ctx.drawImage(source,...rect,...dest);ctx.restore();}
+  function atlas(rect,dest,alpha=1,source=assets.overflow){if(alpha<=0)return;ctx.save();ctx.imageSmoothingQuality='high';ctx.globalAlpha=clamp(alpha);ctx.drawImage(source,...rect,...dest);ctx.restore();}
   function ripples(y,strength,cx=500){
     if(strength<.001)return;
     ctx.save();ctx.beginPath();ctx.ellipse(500,y,139,22,0,0,Math.PI*2);ctx.clip();
@@ -96,6 +114,7 @@ export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.reso
     const f=sampleDivination(effect,elapsed),special=effect==='specialization';
     ctx.resetTransform();ctx.clearRect(0,0,canvas.width,canvas.height);ctx.setTransform(region.width/W,0,0,region.height/H,region.x,region.y);
     ctx.drawImage(glassRepair,glassRepairRegion.x,glassRepairRegion.y);
+    ctx.drawImage(waterBody,0,0);
     let surfaceY=105;
     if(effect!=='none'&&!special){
       const state=art.draw(ctx,effect,f);surfaceY=state.surfaceY;
@@ -104,8 +123,8 @@ export function mountWaterScene(scene,{deferEffects=false,poseReady=Promise.reso
       canvas.dataset.leafX=String(state.leafX||500);canvas.dataset.leafY=String(state.leafY||105);
       canvas.dataset.residues=String(state.residues||0);canvas.dataset.artPass='3';
     }else{
-      // Approved Specialization and concentration preserve their exact raster
-      // order, texture sampling and timing; the new art does not touch them.
+      // Specialization and concentration retain their choreography and timing;
+      // the shared liquid tint and smoother atlas sampling apply here too.
       const altered=concentration>0||special;
       if(altered)ctx.drawImage(assets.clean,(650-region.x)/.65,(600-region.y)/.65,240/.65,60/.65);
       ripples(105,concentration*.68,500);

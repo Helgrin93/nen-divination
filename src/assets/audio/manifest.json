@@ -1,0 +1,77 @@
+{
+  "version": 5,
+  "provenance": "Two sampled instrumental covers of Yoshihisa Hirano themes. Result: a 60-second excerpt of the user-selected Yuzu recording with vocals removed; not a newly performed cover.",
+  "format": "mp3",
+  "tracks": [
+    {
+      "id": "intro-quiz",
+      "title": "The World of Adventurers",
+      "file": "intro-quiz.mp3",
+      "bpm": 141,
+      "kind": "Cover pianistica",
+      "composer": "Yoshihisa Hirano",
+      "credit": "Arrangiamento pianistico: Julian Berger",
+      "sourceUrl": "https://drive.google.com/file/d/144Gk3sgIkxB-bOSSwAn2Ptic3TegMg7A/view",
+      "durationSeconds": 70.32947845804989,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peakDbFS": -1.938200260161128,
+      "rmsDbFS": -19.86816543169826,
+      "events": 674,
+      "bytes": 1407478,
+      "sha256": "d061f66c0ee7b0f3424295f52e9334637cf743f9abcbf023a37fbf8a4706f231"
+    },
+    {
+      "id": "divination",
+      "title": "Legend of the Martial Artist",
+      "file": "divination.mp3",
+      "bpm": 125,
+      "kind": "Cover del tema iniziale",
+      "composer": "Yoshihisa Hirano",
+      "credit": "Trascrizione di riferimento: livepotato · accompagnamento ridotto per questa bozza",
+      "sourceUrl": "https://www.noteflight.com/music/titles/8081eaf5-4752-4992-84cd-26497121164c/hunter-x-hunter-legend-of-the-martial-artist",
+      "durationSeconds": 34.56,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peakDbFS": -8.202738663362446,
+      "rmsDbFS": -17.721132953863265,
+      "events": 196,
+      "bytes": 691722,
+      "sha256": "ed0d354160dbe5edee0231a2067b521ae311b8e5de6e5b2f7b6e133391ad6530"
+    },
+    {
+      "id": "result",
+      "title": "Hyōri Ittai",
+      "file": "result.mp3",
+      "bpm": 150.11,
+      "kind": "Voce rimossa · 0:00–1:00",
+      "composer": "Yujin Kitagawa, Koji Iwasawa, Kenichi Maeyamada",
+      "artist": "Yuzu",
+      "credit": "Yuzu · riferimento di XimeRmusik · separazione vocale UVR-MDX-NET-Voc_FT",
+      "sourceUrl": "https://www.youtube.com/watch?v=ZV9jaHMnaUI",
+      "durationSeconds": 60,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peakDbFS": -1.938200260161128,
+      "rmsDbFS": -18.535569954575372,
+      "events": 0,
+      "bytes": 1200588,
+      "sha256": "552ab2a07c1e8a7ad472c1fa54c40453104aaa5092020a0873ae596ccc472dbe",
+      "referenceSegment": {
+        "url": "https://www.youtube.com/watch?v=ZV9jaHMnaUI",
+        "startSeconds": 0,
+        "endSeconds": 60
+      },
+      "transcription": "No symbolic transcription: stereo accompaniment isolated from the selected recording with UVR-MDX-NET-Voc_FT. Vocal residue and separation artifacts may remain.",
+      "method": "vocal-removal",
+      "containsSourceRecording": true,
+      "soundfontUsed": false
+    }
+  ],
+  "soundfont": {
+    "name": "GeneralUser GS",
+    "version": "2.0.3",
+    "author": "S. Christian Collins",
+    "sha256": "9575028c7a1f589f5770fccc8cff2734566af40cd26ed836944e9a5152688cfe"
+  }
+}

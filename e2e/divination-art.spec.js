@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 const approved=JSON.parse(await readFile(new URL('./fixtures/specialization-approved.json',import.meta.url),'utf8'));
 
-test('Specialization preserves approved animation pixels outside the shared glass correction',async({page,browserName})=>{
+test('Specialization preserves its animation with smoother leaf edges and shared water tint',async({page,browserName})=>{
   test.skip(browserName!=='chromium','PNG golden uses the Chromium encoder; WebKit is covered by lifecycle and seek tests.');
   await page.goto('/review/divination.html');
   await expect(page.locator('.water-effects')).toHaveAttribute('data-ready','true');
@@ -10,19 +10,27 @@ test('Specialization preserves approved animation pixels outside the shared glas
     const difference=await page.evaluate(async fraction=>{
       const c=document.querySelector('.water-effects'),ctx=c.getContext('2d'),w=window.divinationReview.water;
       w.reset();const repair=ctx.getImageData(0,0,c.width,c.height).data,mask=new Uint8Array(c.width*c.height);
-      // The only permitted change to the approved frames is the common static
-      // glass correction. Include the two-pixel resampling fringe around it.
+      // Exclude the shared static glass repair and liquid tint, including
+      // their two-pixel resampling fringe. Keep the existing animation golden.
       for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++)if(repair[(y*c.width+x)*4+3])
         for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++)if(x+dx>=0&&x+dx<c.width&&y+dy>=0&&y+dy<c.height)mask[(y+dy)*c.width+x+dx]=1;
       const image=new Image();image.src='/e2e/fixtures/specialization-approved-'+String(Math.round(fraction*100)).padStart(3,'0')+'.png';await image.decode();
       const reference=Object.assign(document.createElement('canvas'),{width:c.width,height:c.height}),rc=reference.getContext('2d');rc.drawImage(image,0,0);
       const before=rc.getImageData(0,0,c.width,c.height).data;
       w.setEffect('specialization',{restart:true});w.pause();w.seek(w.getState().duration*fraction);
-      const after=ctx.getImageData(0,0,c.width,c.height).data;let changed=0;
-      for(let i=0;i<before.length;i++)if(!mask[i>>2]&&before[i]!==after[i])changed++;
-      return changed;
+      const after=ctx.getImageData(0,0,c.width,c.height).data;let changed=0,leafDelta=0;
+      for(let i=0;i<before.length;i++)if(!mask[i>>2]&&before[i]!==after[i]){
+        const x=(i>>2)%c.width,y=Math.floor((i>>2)/c.width);
+        // The same leaf atlas now uses high-quality downsampling. Allow a
+        // bounded colour difference only within its registered 112x28 area;
+        // fragments, timing and every pixel outside that area stay exact.
+        if(x>=713&&x<825&&y>=614&&y<642)leafDelta+=Math.abs(before[i]-after[i]);
+        else changed++;
+      }
+      return {changed,leafMeanDelta:leafDelta/(112*28*4)};
     },frame.fraction);
-    expect(difference).toBe(0);
+    expect(difference.changed).toBe(0);
+    expect(difference.leafMeanDelta).toBeLessThan(6);
   }
 });
 

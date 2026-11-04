@@ -4,6 +4,28 @@ Aggiornato il **27 ottobre 2026**. La scena di divinazione e la scheda risultato
 
 ## Prova di qualità della divinazione — revisione corrente
 
+### Acqua più leggibile e revisione delle sei reazioni — 4 novembre 2026
+
+Aggiunta una lieve tonalità fredda nel solo volume del liquido, escludendo i
+riflessi chiari del vetro. Il trattamento è condiviso dal riposo e dalle sei
+reazioni. Nel Potenziamento la ricostruzione sotto il livello dell'acqua ora
+estende una riga di colore invece di stirare una fascia di riflessi, eliminando
+le bande squadrate. Il ricampionamento di qualità della foglia che appassisce
+riduce i bordi seghettati; tempi e movimento dei frammenti sono conservati.
+Confronti di quattro istanti per tutte le reazioni in `.verification/before-*.png`
+e `.verification/after-*.png`. Il confronto con i fotogrammi storici ammette
+solo una differenza cromatica limitata nel rettangolo della foglia ricampionata,
+oltre al trattamento statico condiviso: i pixel esterni restano invariati.
+
+### Correzione del doppio livello dell'acqua — 4 novembre 2026
+
+Nel Potenziamento il campione animato comprendeva anche la fascia anteriore
+del bordo di vetro: la copia sollevata si sommava al bordo fisso. Il campione
+ora contiene soltanto l'interno della superficie. La salita parte dal livello
+di riposo e raggiunge il labbro interno, con inserimento graduale della texture;
+il bordo del bicchiere viene ripristinato una sola volta. Confronto ravvicinato
+di sei istanti in `.verification/water-before.png` e `.verification/water-after.png`.
+
 Integrate tre pose anatomiche dedicate delle mani, un tavolo senza mani e una superficie senza foglia, generati con lo strumento integrato imagegen dal fondale approvato. File in `public/assets/divination/`. Il runtime usa soltanto le impronte delle vecchie mani e della foglia dei nuovi fondali: Wing, tappeto, muro e calice continuano a usare i file originali.
 
 La nuova animazione riguarda esclusivamente Potenziamento e increspature di concentrazione. Le altre cinque reazioni sono statiche, in attesa dell'approvazione richiesta. Rimossi raggi, lineette convergenti, bagliori e vecchie reazioni provvisorie. Punteggi e schermata finale invariati.
